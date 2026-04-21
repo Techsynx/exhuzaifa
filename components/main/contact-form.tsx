@@ -12,10 +12,10 @@ export const ContactForm = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     const formData = new FormData(e.currentTarget);
     // Web3Forms Public Access Key - Users can get their own at https://web3forms.com/
-    formData.append("access_key", "YOUR_ACCESS_KEY_HERE");
+    formData.append("access_key", "17b7edb6-d0af-461f-b19f-d59407576076");
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
@@ -67,7 +67,7 @@ export const ContactForm = () => {
               </div>
               <h3 className="text-2xl font-bold text-white mb-2">Message Received!</h3>
               <p className="text-gray-400">Huzaifa will get back to you across the cosmic void soon.</p>
-              <button 
+              <button
                 onClick={() => setSuccess(false)}
                 className="mt-8 text-purple-400 hover:text-purple-300 underline"
               >
