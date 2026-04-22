@@ -84,15 +84,11 @@ export const Chatbot = () => {
 
   return (
     <section id="ai-assistant" className="flex flex-col items-center justify-center py-20 z-[20]">
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="w-full max-w-[900px] px-5"
-      >
-        <div className="flex flex-col items-center mb-10">
+      <div className="w-full max-w-[900px] px-5 flex flex-col items-center">
+        <div className="flex flex-col items-center mb-10 w-full">
           <motion.div
-            variants={slideInFromTop}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
             className="Welcome-box py-[8px] px-[7px] border border-[#7042f88b] opacity-[0.9] mb-4"
           >
             <SparklesIcon className="text-[#b49bff] mr-[10px] h-5 w-5" />
@@ -100,46 +96,58 @@ export const Chatbot = () => {
           </motion.div>
           
           <motion.h1 
-            variants={slideInFromLeft(0.5)}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3 }}
             className="text-[40px] font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 text-center mb-10"
           >
             Neural Chat Interface
           </motion.h1>
 
-          {/* Purple Neon Toggle Button */}
+          {/* Purple Neon Toggle Button - The primary 'AI Online' indicator */}
           <motion.button
-            whileHover={{ scale: 1.05 }}
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.5 }}
+            whileHover={{ scale: 1.05, shadow: "0 0 50px rgba(168,85,247,0.8)" }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(!isOpen)}
-            className={`relative group px-8 py-4 rounded-full transition-all duration-500 ${
+            className={`relative group px-10 py-6 rounded-2xl transition-all duration-500 border-2 ${
               isOpen 
-                ? "bg-transparent border-2 border-purple-500 text-purple-400 shadow-[0_0_20px_rgba(168,85,247,0.4)]" 
-                : "bg-purple-600 text-white shadow-[0_0_30px_rgba(168,85,247,0.6)] hover:shadow-[0_0_50px_rgba(168,85,247,0.8)]"
-            } flex items-center gap-6 overflow-hidden`}
+                ? "bg-transparent border-purple-500 text-purple-400 shadow-[0_0_30px_rgba(168,85,247,0.4)]" 
+                : "bg-[#030014]/80 border-purple-600 text-white shadow-[0_0_40px_rgba(168,85,247,0.5)]"
+            } flex items-center gap-8 overflow-hidden backdrop-blur-md`}
           >
-            <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-full overflow-hidden border-2 border-white/20 p-[1px]">
-                <video autoPlay muted loop playsInline className="w-full h-full object-cover scale-150">
-                  <source src="/videos/blackhole.webm" type="video/webm" />
-                </video>
+            <div className="flex items-center gap-4">
+              <div className="h-14 w-14 rounded-full overflow-hidden border-2 border-purple-500/50 p-[2px] shadow-[0_0_15px_rgba(168,85,247,0.3)]">
+                <div className="w-full h-full rounded-full overflow-hidden">
+                  <video autoPlay muted loop playsInline className="w-full h-full object-cover scale-150">
+                    <source src="/videos/blackhole.webm" type="video/webm" />
+                  </video>
+                </div>
               </div>
               <div className="text-left">
-                <p className="text-sm font-bold tracking-wider">HUZAIFA CORE AI</p>
-                <div className="flex items-center gap-1.5">
-                  <span className="h-1.5 w-1.5 bg-[#00ffcc] rounded-full animate-pulse shadow-[0_0_10px_#00ffcc]"></span>
-                  <p className="text-[10px] opacity-80 uppercase tracking-tighter">System Online</p>
+                <p className="text-lg font-black tracking-[0.2em] text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
+                  HUZAIFA CORE AI
+                </p>
+                <div className="flex items-center gap-2 mt-1">
+                  <span className="h-2 w-2 bg-[#00ffcc] rounded-full animate-pulse shadow-[0_0_15px_#00ffcc]"></span>
+                  <p className="text-xs font-bold text-[#00ffcc] uppercase tracking-widest">System Online</p>
                 </div>
               </div>
             </div>
-            <div className="h-8 w-[1px] bg-white/20" />
-            <span className="text-sm font-medium">
-              {isOpen ? "CLOSE INTERFACE" : "INITIALIZE CHAT"}
-            </span>
             
-            {/* Neon Pulse Effect */}
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_2s_infinite]" />
+            <div className="h-10 w-[2px] bg-gradient-to-b from-transparent via-purple-500/50 to-transparent" />
+            
+            <div className="flex flex-col items-center">
+              <span className="text-xs font-bold tracking-widest opacity-60 mb-1">
+                {isOpen ? "TERMINATE" : "INITIALIZE"}
+              </span>
+              <SparklesIcon className={`h-6 w-6 ${isOpen ? "text-red-500 rotate-45" : "text-purple-400"} transition-all duration-500`} />
             </div>
+            
+            {/* Ambient Glow Effect */}
+            <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-cyan-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
           </motion.button>
         </div>
 
@@ -277,7 +285,7 @@ export const Chatbot = () => {
           </motion.div>
         )}
       </AnimatePresence>
-      </motion.div>
+      </div>
     </section>
   );
 };
