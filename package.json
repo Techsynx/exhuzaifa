@@ -12,11 +12,11 @@
     "lint": "eslint ."
   },
   "author": {
-    "name": "Sanidhya Kumar Verma",
-    "email": "sanidhya.verma12345@gmail.com",
-    "url": "https://github.com/sanidhyy"
+    "name": "Huzaifa Malik",
+    "email": "exhuzaifa@gmail.com",
+    "url": "https://github.com/exhuzaifa"
   },
-  "description": "Welcome to my full stack Next.js 14 space portfolio.",
+  "description": "Premium Space-Themed AI Engineer Portfolio built with Next.js 14, Three.js, and Framer Motion.",
   "keywords": [
     "reactjs",
     "nextjs",
@@ -51,12 +51,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sanidhyy/space-portfolioit"
+    "url": "https://github.com/Techsynx/exhuzaifa"
   },
-  "homepage": "https://github.com/sanidhyy/space-portfolio#readme",
+  "homepage": "https://github.com/Techsynx/exhuzaifa#readme",
   "bugs": {
-    "url": "https://github.com/sanidhyy/space-portfolio/issues",
-    "email": "sanidhya.verma12345@gmail.com"
+    "url": "https://github.com/Techsynx/exhuzaifa/issues",
+    "email": "exhuzaifa@gmail.com"
   },
   "funding": [
     {
