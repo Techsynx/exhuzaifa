@@ -119,6 +119,18 @@ export const SKILL_ROW_2 = [
     width: 60,
     height: 60,
   },
+  {
+    skill_name: "Figma",
+    image: "figma.png",
+    width: 50,
+    height: 50,
+  },
+  {
+    skill_name: "Kali Linux",
+    image: "kali.svg",
+    width: 60,
+    height: 60,
+  },
 ] as const;
 
 export const SOCIALS = [

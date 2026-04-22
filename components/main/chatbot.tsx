@@ -108,7 +108,7 @@ export const Chatbot = () => {
 
         <motion.div
           variants={slideInFromRight(0.5)}
-          className="h-[650px] w-full border border-[#7042f88b] bg-[#0b141a] rounded-3xl flex flex-col overflow-hidden shadow-[0_0_80px_-12px_rgba(112,66,248,0.4)] relative"
+          className="h-[650px] w-full border border-[#7042f88b] bg-[#111b21] rounded-3xl flex flex-col overflow-hidden shadow-[0_0_80px_-12px_rgba(112,66,248,0.4)] relative"
         >
           {/* Neural Header */}
           <div className="p-5 bg-[#202c33] border-b border-[#7042f88b] flex items-center justify-between z-10">
@@ -134,11 +134,11 @@ export const Chatbot = () => {
           {/* Authentic WhatsApp Dark Window */}
           <div 
             ref={scrollRef}
-            className="flex-1 overflow-y-auto p-6 flex flex-col gap-6 scrollbar-hidden relative bg-[#0b141a]"
+            className="flex-1 overflow-y-auto p-6 flex flex-col gap-6 scrollbar-hidden relative bg-[#111b21]"
           >
             {/* Official WhatsApp Web Dark Doodle Background */}
             <div 
-              className="absolute inset-0 pointer-events-none opacity-[0.4]"
+              className="absolute inset-0 pointer-events-none opacity-[0.3] animate-doodle"
               style={{
                 backgroundImage: `url("https://web.whatsapp.com/img/bg-chat-tile-dark_a4be512e7195b6b733d9110b401f101c.png")`,
                 backgroundSize: "400px",
@@ -199,7 +199,7 @@ export const Chatbot = () => {
 
           {/* Quick Action Chips */}
           {!isLoading && (
-            <div className="px-4 py-2 bg-[#0b141a] flex gap-2 overflow-x-auto scrollbar-hidden z-10 border-t border-[#202c33]">
+            <div className="px-4 py-2 bg-[#111b21] flex gap-2 overflow-x-auto scrollbar-hidden z-10 border-t border-[#202c33]">
               {QUICK_QUESTIONS.map((q) => (
                 <button
                   key={q}
