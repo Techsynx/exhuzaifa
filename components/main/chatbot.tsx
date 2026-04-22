@@ -29,6 +29,7 @@ export const Chatbot = () => {
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -100,16 +101,57 @@ export const Chatbot = () => {
           
           <motion.h1 
             variants={slideInFromLeft(0.5)}
-            className="text-[40px] font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 text-center"
+            className="text-[40px] font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 text-center mb-10"
           >
             Neural Chat Interface
           </motion.h1>
+
+          {/* Purple Neon Toggle Button */}
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setIsOpen(!isOpen)}
+            className={`relative group px-8 py-4 rounded-full transition-all duration-500 ${
+              isOpen 
+                ? "bg-transparent border-2 border-purple-500 text-purple-400 shadow-[0_0_20px_rgba(168,85,247,0.4)]" 
+                : "bg-purple-600 text-white shadow-[0_0_30px_rgba(168,85,247,0.6)] hover:shadow-[0_0_50px_rgba(168,85,247,0.8)]"
+            } flex items-center gap-6 overflow-hidden`}
+          >
+            <div className="flex items-center gap-3">
+              <div className="h-10 w-10 rounded-full overflow-hidden border-2 border-white/20 p-[1px]">
+                <video autoPlay muted loop playsInline className="w-full h-full object-cover scale-150">
+                  <source src="/videos/blackhole.webm" type="video/webm" />
+                </video>
+              </div>
+              <div className="text-left">
+                <p className="text-sm font-bold tracking-wider">HUZAIFA CORE AI</p>
+                <div className="flex items-center gap-1.5">
+                  <span className="h-1.5 w-1.5 bg-[#00ffcc] rounded-full animate-pulse shadow-[0_0_10px_#00ffcc]"></span>
+                  <p className="text-[10px] opacity-80 uppercase tracking-tighter">System Online</p>
+                </div>
+              </div>
+            </div>
+            <div className="h-8 w-[1px] bg-white/20" />
+            <span className="text-sm font-medium">
+              {isOpen ? "CLOSE INTERFACE" : "INITIALIZE CHAT"}
+            </span>
+            
+            {/* Neon Pulse Effect */}
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_2s_infinite]" />
+            </div>
+          </motion.button>
         </div>
 
-        <motion.div
-          variants={slideInFromRight(0.5)}
-          className="h-[650px] w-full border border-[#e9edef] bg-[#efeae2] rounded-3xl flex flex-col overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.1)] relative"
-        >
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0, transformPerspective: 1000, rotateX: -20 }}
+              animate={{ height: "650px", opacity: 1, rotateX: 0 }}
+              exit={{ height: 0, opacity: 0, rotateX: -20 }}
+              transition={{ duration: 0.8, ease: [0.04, 0.62, 0.23, 0.98] }}
+              className="w-full border border-[#e9edef] bg-[#efeae2] rounded-3xl flex flex-col overflow-hidden shadow-[0_20px_80px_rgba(0,0,0,0.3)] relative origin-top"
+            >
           {/* Neural Header */}
           <div className="p-5 bg-[#f0f2f5] border-b border-[#e9edef] flex items-center justify-between z-10">
             <div className="flex items-center gap-4">
@@ -231,7 +273,10 @@ export const Chatbot = () => {
               <PaperAirplaneIcon className="h-6 w-6 group-hover:rotate-12 transition-transform" />
             </button>
           </div>
-        </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       </motion.div>
     </section>
   );
