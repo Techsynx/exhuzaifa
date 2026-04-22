@@ -108,12 +108,12 @@ export const Chatbot = () => {
 
         <motion.div
           variants={slideInFromRight(0.5)}
-          className="h-[650px] w-full border border-[#7042f88b] bg-[#111b21] rounded-3xl flex flex-col overflow-hidden shadow-[0_0_80px_-12px_rgba(112,66,248,0.4)] relative"
+          className="h-[650px] w-full border border-[#e9edef] bg-[#efeae2] rounded-3xl flex flex-col overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.1)] relative"
         >
           {/* Neural Header */}
-          <div className="p-5 bg-[#202c33] border-b border-[#7042f88b] flex items-center justify-between z-10">
+          <div className="p-5 bg-[#f0f2f5] border-b border-[#e9edef] flex items-center justify-between z-10">
             <div className="flex items-center gap-4">
-              <div className="h-12 w-12 rounded-full overflow-hidden border-2 border-[#7042f88b] p-[2px] shadow-[0_0_15px_rgba(112,66,248,0.5)]">
+              <div className="h-12 w-12 rounded-full overflow-hidden border-2 border-[#00a884] p-[2px] shadow-sm">
                 <div className="w-full h-full rounded-full overflow-hidden">
                   <video autoPlay muted loop playsInline className="w-full h-full object-cover scale-150">
                     <source src="/videos/blackhole.webm" type="video/webm" />
@@ -121,30 +121,29 @@ export const Chatbot = () => {
                 </div>
               </div>
               <div>
-                <h3 className="text-[#e9edef] font-bold text-base tracking-wide">Huzaifa's Core AI</h3>
+                <h3 className="text-[#111b21] font-bold text-base tracking-wide">Huzaifa's Core AI</h3>
                 <div className="flex items-center gap-2">
                   <span className="h-2 w-2 bg-[#00a884] rounded-full animate-pulse"></span>
-                  <p className="text-[#8696a0] text-[11px] uppercase tracking-widest font-medium">Online</p>
+                  <p className="text-[#667781] text-[11px] uppercase tracking-widest font-medium">Online</p>
                 </div>
               </div>
             </div>
-            <SparklesIcon className="h-6 w-6 text-purple-500 animate-bounce" />
+            <SparklesIcon className="h-6 w-6 text-[#00a884] animate-bounce" />
           </div>
 
           {/* Authentic WhatsApp Dark Window */}
-          <div 
-            ref={scrollRef}
-            className="flex-1 overflow-y-auto p-6 flex flex-col gap-6 scrollbar-hidden relative bg-[#111b21]"
-          >
-            {/* Official WhatsApp Web Dark Doodle Background */}
             <div 
-              className="absolute inset-0 pointer-events-none opacity-[0.3] animate-doodle"
-              style={{
-                backgroundImage: `url("https://web.whatsapp.com/img/bg-chat-tile-dark_a4be512e7195b6b733d9110b401f101c.png")`,
-                backgroundSize: "400px",
-                backgroundRepeat: "repeat",
-              }}
-            ></div>
+              className="flex-1 overflow-y-auto p-6 flex flex-col gap-6 scrollbar-hidden relative bg-[#efeae2]"
+            >
+              {/* Official WhatsApp Web Light Doodle Background */}
+              <div 
+                className="absolute inset-0 pointer-events-none opacity-[0.06] animate-doodle"
+                style={{
+                  backgroundImage: `url("https://web.whatsapp.com/img/bg-chat-tile-light_6860d4c55919018671607f06990327f2.png")`,
+                  backgroundSize: "400px",
+                  backgroundRepeat: "repeat",
+                }}
+              ></div>
 
             <AnimatePresence initial={false}>
               {messages.map((msg, i) => (
@@ -155,18 +154,18 @@ export const Chatbot = () => {
                   className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"} z-10`}
                 >
                   <div
-                    className={`max-w-[85%] px-5 py-3 rounded-2xl text-[14.2px] relative transition-all duration-300 ${
+                    className={`max-w-[85%] px-5 py-3 rounded-2xl text-[14.2px] relative transition-all duration-300 shadow-sm ${
                       msg.role === "user"
-                        ? "bg-[#005c4b] text-[#e9edef] rounded-tr-none shadow-[0_0_15px_rgba(0,168,132,0.4)]"
-                        : "bg-[#202c33] text-[#e9edef] rounded-tl-none shadow-[0_0_15px_rgba(112,66,248,0.4)]"
+                        ? "bg-[#d9fdd3] text-[#111b21] rounded-tr-none"
+                        : "bg-[#ffffff] text-[#111b21] rounded-tl-none"
                     }`}
                   >
                     {/* Authentic Bubble Tail */}
                     <div 
                       className={`absolute top-0 w-3 h-3 ${
                         msg.role === "user" 
-                          ? "-right-2 bg-[#005c4b]" 
-                          : "-left-2 bg-[#202c33]"
+                          ? "-right-2 bg-[#d9fdd3]" 
+                          : "-left-2 bg-[#ffffff]"
                       }`}
                       style={{
                         clipPath: msg.role === "user" 
@@ -175,7 +174,7 @@ export const Chatbot = () => {
                       }}
                     />
                     {msg.content}
-                    <div className="text-[10px] text-[#8696a0] text-right mt-1.5 opacity-90">
+                    <div className="text-[10px] text-[#667781] text-right mt-1.5 opacity-90">
                       {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </div>
                   </div>
@@ -185,11 +184,11 @@ export const Chatbot = () => {
             
             {isLoading && (
               <div className="flex justify-start z-10">
-                <div className="bg-[#202c33] text-cyan-500 px-5 py-3 rounded-2xl rounded-tl-none border border-[#7042f88b]/30 text-sm flex items-center gap-2 shadow-[0_0_15px_rgba(112,66,248,0.3)]">
+                <div className="bg-[#ffffff] text-[#00a884] px-5 py-3 rounded-2xl rounded-tl-none border border-[#e9edef] text-sm flex items-center gap-2 shadow-sm">
                   <div className="flex gap-1">
-                    <span className="w-1.5 h-1.5 bg-cyan-500 rounded-full animate-bounce"></span>
-                    <span className="w-1.5 h-1.5 bg-cyan-500 rounded-full animate-bounce [animation-delay:0.2s]"></span>
-                    <span className="w-1.5 h-1.5 bg-cyan-500 rounded-full animate-bounce [animation-delay:0.4s]"></span>
+                    <span className="w-1.5 h-1.5 bg-[#00a884] rounded-full animate-bounce"></span>
+                    <span className="w-1.5 h-1.5 bg-[#00a884] rounded-full animate-bounce [animation-delay:0.2s]"></span>
+                    <span className="w-1.5 h-1.5 bg-[#00a884] rounded-full animate-bounce [animation-delay:0.4s]"></span>
                   </div>
                   <span className="text-[11px] uppercase tracking-tighter ml-2 font-bold">Neural Link...</span>
                 </div>
@@ -199,12 +198,12 @@ export const Chatbot = () => {
 
           {/* Quick Action Chips */}
           {!isLoading && (
-            <div className="px-4 py-2 bg-[#111b21] flex gap-2 overflow-x-auto scrollbar-hidden z-10 border-t border-[#202c33]">
+            <div className="px-4 py-2 bg-[#efeae2] flex gap-2 overflow-x-auto scrollbar-hidden z-10 border-t border-[#e9edef]">
               {QUICK_QUESTIONS.map((q) => (
                 <button
                   key={q}
                   onClick={() => handleSend(q)}
-                  className="whitespace-nowrap px-3 py-1.5 rounded-full bg-[#202c33] border border-[#7042f844] text-[#8696a0] text-xs hover:text-white hover:border-[#00a884] transition-all active:scale-95 shadow-lg"
+                  className="whitespace-nowrap px-3 py-1.5 rounded-full bg-[#ffffff] border border-[#e9edef] text-[#667781] text-xs hover:text-[#111b21] hover:border-[#00a884] transition-all active:scale-95 shadow-sm"
                 >
                   {q}
                 </button>
@@ -213,7 +212,7 @@ export const Chatbot = () => {
           )}
 
           {/* WhatsApp Dark Input Area */}
-          <div className="p-5 bg-[#1e2428] flex gap-4 items-center z-10">
+          <div className="p-5 bg-[#f0f2f5] flex gap-4 items-center z-10">
             <div className="flex-1 relative group">
               <input
                 type="text"
@@ -221,7 +220,7 @@ export const Chatbot = () => {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSend()}
                 placeholder="Type a message..."
-                className="w-full bg-[#2a2f32] border-none rounded-2xl px-6 py-4 text-[#e9edef] outline-none focus:ring-1 focus:ring-[#00a884]/50 transition-all text-sm placeholder:text-[#8696a0]"
+                className="w-full bg-[#ffffff] border-none rounded-2xl px-6 py-4 text-[#111b21] outline-none focus:ring-1 focus:ring-[#00a884]/50 transition-all text-sm placeholder:text-[#667781]"
               />
             </div>
             <button
