@@ -39,7 +39,7 @@ export const ContactForm = () => {
   };
 
   return (
-    <section id="contact" className="relative flex flex-col items-center justify-center py-20 px-5 z-[20]">
+    <section id="contact" className="relative flex flex-col items-center justify-center py-10 px-5 z-[20]">
       <motion.div
         initial="hidden"
         whileInView="visible"

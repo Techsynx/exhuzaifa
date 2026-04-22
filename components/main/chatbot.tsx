@@ -83,7 +83,7 @@ export const Chatbot = () => {
   };
 
   return (
-    <section id="ai-assistant" className="flex flex-col items-center justify-center py-20 z-[20]">
+    <section id="ai-assistant" className="flex flex-col items-center justify-center py-10 z-[20]">
       <div className="w-full max-w-[900px] px-5 flex flex-col items-center">
         <div className="flex flex-col items-center mb-10 w-full">
           <motion.div
