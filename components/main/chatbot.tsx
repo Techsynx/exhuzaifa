@@ -281,8 +281,7 @@ export const Chatbot = () => {
               <PaperAirplaneIcon className="h-6 w-6 group-hover:rotate-12 transition-transform" />
             </button>
           </div>
-            </div>
-          </motion.div>
+            </motion.div>
         )}
       </AnimatePresence>
       </div>
