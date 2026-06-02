@@ -13,18 +13,9 @@ export const Navbar = () => {
       {/* Navbar Container */}
       <div className="w-full h-full flex items-center justify-between m-auto px-[10px]">
         {/* Logo + Name */}
-        <Link
-          href="#about-me"
-          className="flex flex-row items-center"
-        >
+        <Link href="#about-me" className="flex flex-row items-center">
           <div className="h-[50px] w-[50px] rounded-full overflow-hidden flex items-center justify-center border border-[#7042f88b] mr-[10px]">
-             <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="w-full h-full object-cover"
-            >
+            <video autoPlay muted loop playsInline className="w-full h-full object-cover">
               <source src="/videos/blackhole.webm" type="video/webm" />
             </video>
           </div>
@@ -37,11 +28,7 @@ export const Navbar = () => {
         <div className="hidden md:flex w-[500px] h-full flex-row items-center justify-between md:mr-20">
           <div className="flex items-center justify-between w-full h-auto border-[rgba(112,66,248,0.38)] bg-[rgba(3,0,20,0.37)] mr-[15px] px-[20px] py-[10px] rounded-full text-gray-200">
             {NAV_LINKS.map((link) => (
-              <Link
-                key={link.title}
-                href={link.link}
-                className="cursor-pointer hover:text-[rgb(112,66,248)] transition"
-              >
+              <Link key={link.title} href={link.link} className="cursor-pointer hover:text-[rgb(112,66,248)] transition">
                 {link.title}
               </Link>
             ))}
@@ -51,38 +38,25 @@ export const Navbar = () => {
         {/* Social Icons (Web) */}
         <div className="hidden md:flex flex-row gap-5">
           {SOCIALS.map(({ link, name, icon: Icon }) => (
-            <Link
-              href={link}
-              target="_blank"
-              rel="noreferrer noopener"
-              key={name}
-            >
+            <Link href={link} target="_blank" rel="noreferrer noopener" key={name}>
               <Icon className="h-6 w-6 text-white" />
             </Link>
           ))}
         </div>
 
         {/* Hamburger Menu */}
-        <button
-          className="md:hidden text-white focus:outline-none text-4xl"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
+        <button className="md:hidden text-white focus:outline-none text-4xl z-50" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
           ☰
         </button>
       </div>
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="absolute top-[65px] left-0 w-full bg-[#030014d0] backdrop-blur-md border-b border-purple-500/20 shadow-lg shadow-[#2A0E61]/30 p-6 flex flex-col items-center text-gray-300 md:hidden z-50">
+        <div className="absolute top-[65px] left-0 w-full bg-[#030014d0] backdrop-blur-md border-b border-purple-500/20 shadow-lg shadow-[#2A0E61]/30 p-6 flex flex-col items-center text-gray-300 md:hidden z-40 overflow-x-hidden">
           {/* Links */}
           <div className="flex flex-col items-center gap-4">
             {NAV_LINKS.map((link) => (
-              <Link
-                key={link.title}
-                href={link.link}
-                className="cursor-pointer hover:text-[rgb(112,66,248)] transition text-center"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
+              <Link key={link.title} href={link.link} className="cursor-pointer hover:text-[rgb(112,66,248)] transition text-center" onClick={() => setIsMobileMenuOpen(false)}>
                 {link.title}
               </Link>
             ))}
@@ -91,12 +65,7 @@ export const Navbar = () => {
           {/* Social Icons */}
           <div className="flex justify-center gap-6 mt-6">
             {SOCIALS.map(({ link, name, icon: Icon }) => (
-              <Link
-                href={link}
-                target="_blank"
-                rel="noreferrer noopener"
-                key={name}
-              >
+              <Link href={link} target="_blank" rel="noreferrer noopener" key={name}>
                 <Icon className="h-8 w-8 text-white" />
               </Link>
             ))}
