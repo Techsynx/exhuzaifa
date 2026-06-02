@@ -150,31 +150,43 @@ export const SOCIALS = [
 
 export const PROJECTS = [
   {
-    title: "Fraud AI (Detect AI Content)",
-    description:
-      "An intelligent system designed to detect and flag AI-generated content, ensuring authenticity and transparency in digital media.",
-    image: "/projects/fraud-ai.png",
+    title: "PropertyVault",
+    description: "Real‑time property valuation & market analytics pipeline (10K+ listings) with interpretable ML models.",
     link: "https://exhuzaifa.vercel.app",
   },
   {
-    title: "EXP-AI (YT Video Summarizer)",
-    description:
-      "An AI-powered tool that summarizes YouTube videos, providing key insights and saving time for users.",
-    image: "/projects/exp-ai.png",
+    title: "SentinelAI",
+    description: "Predicts high‑risk properties using XGBoost, with live model monitoring and interactive dashboards.",
     link: "https://exhuzaifa.vercel.app",
   },
   {
-    title: "Chessy (Predict Chess Moves)",
-    description:
-      "A deep learning project that predicts optimal chess moves based on historical game data and pattern recognition.",
-    image: "/projects/chessy.png",
+    title: "DataBridge",
+    description: "Automates daily ingestion of 500K+ records via Airflow, with validation and alerting to cut manual processing.",
     link: "https://exhuzaifa.vercel.app",
   },
   {
-    title: "Posture Tracking",
-    description:
-      "A computer vision application that tracks and analyzes body posture in real-time to promote better ergonomics.",
-    image: "/projects/posture.png",
+    title: "InsightLens",
+    description: "Demand forecasting with Prophet & LSTM, delivering 85% accuracy through an interactive Streamlit UI.",
+    link: "https://exhuzaifa.vercel.app",
+  },
+  {
+    title: "ClusterX",
+    description: "Unsupervised market segmentation into 7 clusters, boosting targeted marketing ROI 3×.",
+    link: "https://exhuzaifa.vercel.app",
+  },
+  {
+    title: "AutoML Analytics",
+    description: "Automated model selection & hyper‑parameter tuning, shortening model dev time from days to hours.",
+    link: "https://exhuzaifa.vercel.app",
+  },
+  {
+    title: "ReportGenix",
+    description: "Generates 500+ PDFs/Excel reports daily via FastAPI & Celery, enabling self‑service analytics.",
+    link: "https://exhuzaifa.vercel.app",
+  },
+  {
+    title: "AnomalyGuard",
+    description: "Real‑time anomaly detection on property data streams, improving data quality by 41%.",
     link: "https://exhuzaifa.vercel.app",
   },
 ] as const;
