@@ -15,12 +15,12 @@ export const HeroContent = () => {
     <motion.div
       initial="hidden"
       animate="visible"
-      className="flex flex-col md:flex-row items-center justify-center px-4 md:px-20 mt-28 md:mt-20 w-full max-w-screen-md mx-auto bg-[#030014]/70 p-4 rounded-lg"
+      className="flex flex-col md:flex-row items-center justify-center px-4 md:px-20 mt-28 md:mt-20 w-full z-[20]"
     >
-      <div className="h-full w-full flex flex-col gap-5 justify-center m-auto items-center md:items-start text-center md:text-start">
+      <div className="h-full w-full flex flex-col gap-5 justify-center m-auto text-start">
         <motion.div
           variants={slideInFromTop}
-          className="Welcome-box py-[8px] px-[7px] border border-[#7042f88b] opacity-[0.9] bg-black/30 rounded-md"
+          className="Welcome-box py-[8px] px-[7px] border border-[#7042f88b] opacity-[0.9]"
         >
           <SparklesIcon className="text-[#b49bff] mr-[10px] h-5 w-5" />
           <h1 className="Welcome-text text-[13px]">
@@ -28,7 +28,10 @@ export const HeroContent = () => {
           </h1>
         </motion.div>
 
-        <motion.div className="flex flex-col gap-6 mt-6 text-4xl md:text-6xl font-bold text-white max-w-[600px] w-auto h-auto" variants={slideInFromLeft(0.5)}>
+        <motion.div
+          className="flex flex-col gap-6 mt-6 text-6xl font-bold text-white max-w-[600px] w-auto h-auto"
+          variants={slideInFromLeft(0.5)}
+        >
           <span>
             Huzaifa{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
@@ -41,7 +44,9 @@ export const HeroContent = () => {
           variants={slideInFromLeft(0.8)}
           className="text-lg text-gray-400 my-5 max-w-[600px]"
         >
-          Aspiring Machine Learning and AI Engineer with a strong foundation in web development, Computer Science, and data analysis. Passionate about building intelligent, data-driven solutions.
+          Aspiring Machine Learning and AI Engineer with a strong foundation in
+          web development, Computer Science, and data analysis. Passionate about
+          building intelligent, data-driven solutions.
         </motion.p>
 
         <motion.a
@@ -62,7 +67,7 @@ export const HeroContent = () => {
           height={650}
           width={650}
           draggable={false}
-          className="select-none w-full max-w-[450px] md:max-w-[650px] h-auto"
+          className="select-none"
         />
       </motion.div>
     </motion.div>
