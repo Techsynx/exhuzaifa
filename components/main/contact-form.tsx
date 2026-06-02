@@ -39,7 +39,7 @@ export const ContactForm = () => {
   };
 
   return (
-    <section id="contact" className="relative flex flex-col items-center justify-center py-10 px-5 z-[20]">
+    <section id="contact" className="relative flex flex-col items-center justify-center py-6 px-4 md:px-5 z-[20]">
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -48,14 +48,14 @@ export const ContactForm = () => {
       >
         <motion.div
           variants={slideInFromLeft(0.5)}
-          className="text-[40px] font-bold text-white text-center mb-10"
+          className="text-3xl md:text-[40px] font-bold text-white text-center mb-6 md:mb-10"
         >
           Connect with <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">Huzaifa</span>
         </motion.div>
 
         <motion.div
           variants={slideInFromRight(0.8)}
-          className="w-full bg-[#030014]/60 backdrop-blur-xl rounded-3xl p-8 border border-white/10 shadow-2xl relative overflow-hidden"
+          className="w-full bg-[#030014]/60 backdrop-blur-xl rounded-3xl p-4 sm:p-8 border border-white/10 shadow-2xl relative overflow-hidden"
         >
           {/* Success Overlay */}
           {success && (

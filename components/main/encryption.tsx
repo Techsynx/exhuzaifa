@@ -8,10 +8,10 @@ import { slideInFromTop } from "@/lib/motion";
 export const Encryption = () => {
   return (
     <div className="flex flex-row relative items-center justify-center min-h-[600px] w-full h-full -z-20">
-      <div className="absolute w-auto h-auto top-0 z-[5]">
+      <div className="absolute w-auto h-auto top-10 z-[5]">
         <motion.div
           variants={slideInFromTop}
-          className="text-[40px] font-medium text-center text-gray-200"
+          className="text-3xl md:text-[40px] font-medium text-center text-gray-200"
         >
           AI{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
@@ -44,20 +44,20 @@ export const Encryption = () => {
         </div>
       </div>
 
-      <div className="absolute z-[20] bottom-[10px] px-[5px]">
-        <div className="cursive text-[20px] font-medium text-center text-gray-300">
+      <div className="absolute z-[20] bottom-[20px] px-[5px]">
+        <div className="cursive text-lg md:text-[20px] font-medium text-center text-gray-300">
           Building secure and intelligent digital ecosystems.
         </div>
       </div>
 
-      <div className="w-full flex items-start justify-center absolute">
+      <div className="w-full h-full absolute inset-0 z-[-1] flex items-center justify-center">
         <video
           loop
           muted
           autoPlay
           playsInline
           preload="false"
-          className="w-full h-auto"
+          className="w-full h-full object-cover opacity-35"
         >
           <source src="/videos/encryption-bg.webm" type="video/webm" />
         </video>

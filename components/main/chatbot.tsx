@@ -109,17 +109,17 @@ export const Chatbot = () => {
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.5 }}
-            whileHover={{ scale: 1.05, shadow: "0 0 50px rgba(168,85,247,0.8)" }}
+            whileHover={{ scale: 1.05, boxShadow: "0 0 50px rgba(168,85,247,0.8)" }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(!isOpen)}
-            className={`relative group px-10 py-6 rounded-2xl transition-all duration-500 border-2 ${
+            className={`relative group px-4 py-4 md:px-10 md:py-6 rounded-2xl transition-all duration-500 border-2 ${
               isOpen 
                 ? "bg-transparent border-purple-500 text-purple-400 shadow-[0_0_30px_rgba(168,85,247,0.4)]" 
                 : "bg-[#030014]/80 border-purple-600 text-white shadow-[0_0_40px_rgba(168,85,247,0.5)]"
-            } flex items-center gap-8 overflow-hidden backdrop-blur-md`}
+            } flex items-center gap-4 md:gap-8 overflow-hidden backdrop-blur-md`}
           >
-            <div className="flex items-center gap-4">
-              <div className="h-14 w-14 rounded-full overflow-hidden border-2 border-purple-500/50 p-[2px] shadow-[0_0_15px_rgba(168,85,247,0.3)]">
+            <div className="flex items-center gap-3 md:gap-4">
+              <div className="h-10 w-10 md:h-14 md:w-14 rounded-full overflow-hidden border-2 border-purple-500/50 p-[2px] shadow-[0_0_15px_rgba(168,85,247,0.3)] flex-shrink-0">
                 <div className="w-full h-full rounded-full overflow-hidden">
                   <video autoPlay muted loop playsInline className="w-full h-full object-cover scale-150">
                     <source src="/videos/blackhole.webm" type="video/webm" />
@@ -127,23 +127,23 @@ export const Chatbot = () => {
                 </div>
               </div>
               <div className="text-left">
-                <p className="text-lg font-black tracking-[0.2em] text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
+                <p className="text-sm md:text-lg font-black tracking-[0.1em] md:tracking-[0.2em] text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
                   HUZAIFA CORE AI
                 </p>
-                <div className="flex items-center gap-2 mt-1">
-                  <span className="h-2 w-2 bg-[#00ffcc] rounded-full animate-pulse shadow-[0_0_15px_#00ffcc]"></span>
-                  <p className="text-xs font-bold text-[#00ffcc] uppercase tracking-widest">System Online</p>
+                <div className="flex items-center gap-1.5 mt-0.5">
+                  <span className="h-1.5 w-1.5 md:h-2 md:w-2 bg-[#00ffcc] rounded-full animate-pulse shadow-[0_0_15px_#00ffcc]"></span>
+                  <p className="text-[10px] md:text-xs font-bold text-[#00ffcc] uppercase tracking-widest">System Online</p>
                 </div>
               </div>
             </div>
             
-            <div className="h-10 w-[2px] bg-gradient-to-b from-transparent via-purple-500/50 to-transparent" />
+            <div className="hidden sm:block h-10 w-[2px] bg-gradient-to-b from-transparent via-purple-500/50 to-transparent" />
             
             <div className="flex flex-col items-center">
-              <span className="text-xs font-bold tracking-widest opacity-60 mb-1">
+              <span className="text-[9px] md:text-xs font-bold tracking-widest opacity-60 mb-0.5">
                 {isOpen ? "TERMINATE" : "INITIALIZE"}
               </span>
-              <SparklesIcon className={`h-6 w-6 ${isOpen ? "text-red-500 rotate-45" : "text-purple-400"} transition-all duration-500`} />
+              <SparklesIcon className={`h-5 w-5 md:h-6 md:w-6 ${isOpen ? "text-red-500 rotate-45" : "text-purple-400"} transition-all duration-500`} />
             </div>
             
             {/* Ambient Glow Effect */}
@@ -155,7 +155,7 @@ export const Chatbot = () => {
           {isOpen && (
             <motion.div
               initial={{ height: 0, opacity: 0, transformPerspective: 1000, rotateX: -20 }}
-              animate={{ height: "650px", opacity: 1, rotateX: 0 }}
+              animate={{ height: "min(650px, 80vh)", opacity: 1, rotateX: 0 }}
               exit={{ height: 0, opacity: 0, rotateX: -20 }}
               transition={{ duration: 0.8, ease: [0.04, 0.62, 0.23, 0.98] }}
               className="w-full border border-[#e9edef] bg-[#efeae2] rounded-3xl flex flex-col overflow-hidden shadow-[0_20px_80px_rgba(0,0,0,0.3)] relative origin-top"
