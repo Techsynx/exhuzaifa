@@ -15,9 +15,9 @@ export const HeroContent = () => {
     <motion.div
       initial="hidden"
       animate="visible"
-      className="flex flex-row md:flex-row items-start justify-between gap-3 px-4 md:px-20 pt-[34vh] md:pt-0 mt-0 md:mt-20 w-full z-[20]"
+      className="flex flex-col md:flex-row items-center justify-center px-4 md:px-20 mt-28 md:mt-20 w-full z-[20]"
     >
-      <div className="flex flex-col gap-5 justify-center flex-1 min-w-0 text-start">
+      <div className="h-full w-full flex flex-col gap-5 justify-center m-auto text-start">
         <motion.div
           variants={slideInFromTop}
           className="Welcome-box py-[8px] px-[7px] border border-[#7042f88b] opacity-[0.9]"
@@ -29,7 +29,7 @@ export const HeroContent = () => {
         </motion.div>
 
         <motion.div
-          className="flex flex-col gap-4 mt-2 text-3xl sm:text-4xl md:text-6xl font-bold text-white max-w-[600px] w-auto h-auto"
+          className="flex flex-col gap-6 mt-6 text-4xl md:text-6xl font-bold text-white max-w-[600px] w-auto h-auto"
           variants={slideInFromLeft(0.5)}
         >
           <span>
@@ -42,7 +42,7 @@ export const HeroContent = () => {
 
         <motion.p
           variants={slideInFromLeft(0.8)}
-          className="text-sm sm:text-base md:text-lg text-gray-400 my-3 md:my-5 max-w-[600px]"
+          className="text-lg text-gray-400 my-5 max-w-[600px]"
         >
           Aspiring Machine Learning and AI Engineer with a strong foundation in
           web development, Computer Science, and data analysis. Passionate about
@@ -59,7 +59,7 @@ export const HeroContent = () => {
 
       <motion.div
         variants={slideInFromRight(0.8)}
-        className="flex-shrink-0 flex justify-center items-start pt-1 md:flex-1 md:items-center md:pt-0"
+        className="w-full flex justify-center items-center mt-10 md:mt-0 md:flex-1"
       >
         <Image
           src="/hero-bg.svg"
@@ -67,7 +67,7 @@ export const HeroContent = () => {
           height={650}
           width={650}
           draggable={false}
-          className="select-none w-[120px] sm:w-[150px] h-auto opacity-95 md:w-[650px] md:opacity-100"
+          className="select-none w-full max-w-[min(90vw,450px)] md:max-w-[650px] h-auto"
         />
       </motion.div>
     </motion.div>
