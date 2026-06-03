@@ -62,10 +62,16 @@ export const Projects = () => (
           key={project.title}
           variants={cardVariants}
           whileHover={{ y: -6, scale: 1.02 }}
-          className="group relative flex flex-col gap-3 p-6 rounded-2xl border border-purple-500/20 bg-[#0d0d1a]/80 backdrop-blur-sm overflow-hidden cursor-pointer transition-all duration-300 hover:border-purple-400/50"
+          className="group relative flex flex-col gap-3 p-6 rounded-lg border border-purple-500/25 bg-[#0d0d1a]/80 backdrop-blur-sm overflow-hidden cursor-pointer transition-all duration-300 hover:border-purple-400/60 hover:shadow-[0_0_30px_rgba(168,85,247,0.25)]"
         >
+          {/* glowing corner accents */}
+          <span className="pointer-events-none absolute top-0 left-0 h-10 w-10 rounded-tl-lg border-l-2 border-t-2 border-purple-400 shadow-[0_0_14px_rgba(168,85,247,0.9)]" />
+          <span className="pointer-events-none absolute top-0 right-0 h-10 w-10 rounded-tr-lg border-r-2 border-t-2 border-cyan-400 shadow-[0_0_14px_rgba(34,211,238,0.9)]" />
+          <span className="pointer-events-none absolute bottom-0 left-0 h-10 w-10 rounded-bl-lg border-b-2 border-l-2 border-cyan-400 shadow-[0_0_14px_rgba(34,211,238,0.9)]" />
+          <span className="pointer-events-none absolute bottom-0 right-0 h-10 w-10 rounded-br-lg border-b-2 border-r-2 border-purple-400 shadow-[0_0_14px_rgba(168,85,247,0.9)]" />
+
           {/* card glow on hover */}
-          <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-purple-600/10 via-transparent to-cyan-600/10 pointer-events-none" />
+          <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-purple-600/10 via-transparent to-cyan-600/10 pointer-events-none" />
 
           {/* pulsing node dot */}
           <div className="relative flex items-center gap-3 mb-1">

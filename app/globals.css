@@ -85,3 +85,19 @@ html {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
 }
+
+@keyframes skill-icon-glow {
+  0%,
+  100% {
+    filter: grayscale(0) drop-shadow(0 0 12px rgba(168, 85, 247, 0.65));
+    opacity: 1;
+  }
+  50% {
+    filter: grayscale(1) drop-shadow(0 0 0 transparent);
+    opacity: 0.35;
+  }
+}
+
+.skill-icon-glow {
+  animation: skill-icon-glow 3.5s ease-in-out infinite;
+}
