@@ -1,0 +1,14 @@
+---
+description: Always commit and push to production after code changes
+alwaysApply: true
+---
+
+# Deploy to Production
+
+After every code change in this project:
+
+1. Commit with a clear message describing the change.
+2. Push to `origin main` so Vercel deploys to production.
+3. Do this automatically without waiting for the user to ask, unless they explicitly say not to push.
+
+Remote: `https://github.com/Techsynx/exhuzaifa.git`
