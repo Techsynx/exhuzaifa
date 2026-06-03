@@ -1,14 +1,14 @@
 import { HeroContent } from "@/components/sub/hero-content";
 
 export const Hero = () => (
-  <div className="relative flex flex-col h-screen w-full overflow-hidden">
+  <div className="relative flex flex-col min-h-screen md:h-screen w-full overflow-x-hidden md:overflow-hidden">
     {/* Mobile — blackhole arc just below navbar */}
     <video
       autoPlay
       muted
       loop
       playsInline
-      className="md:hidden rotate-180 pointer-events-none absolute left-1/2 -translate-x-1/2 -z-20 w-[125%] max-w-none object-cover top-[-36vh] h-[115vh] object-[50%_100%]"
+      className="md:hidden rotate-180 pointer-events-none absolute left-1/2 -translate-x-1/2 -z-20 w-[125%] max-w-none object-cover top-[-44vh] h-[115vh] object-[50%_100%]"
     >
       <source src="/videos/blackhole.webm" type="video/webm" />
     </video>
