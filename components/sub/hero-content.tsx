@@ -15,7 +15,7 @@ export const HeroContent = () => {
     <motion.div
       initial="hidden"
       animate="visible"
-      className="flex flex-col md:flex-row items-center justify-center px-4 md:px-20 mt-28 md:mt-20 w-full z-[20]"
+      className="relative flex flex-col md:flex-row items-center justify-center px-4 md:px-20 mt-28 md:mt-20 w-full z-[20] max-md:pb-10"
     >
       <div className="h-full w-full flex flex-col gap-5 justify-center m-auto text-start">
         <motion.div
@@ -59,7 +59,7 @@ export const HeroContent = () => {
 
       <motion.div
         variants={slideInFromRight(0.8)}
-        className="w-full flex justify-center items-center mt-10 md:mt-0 md:flex-1"
+        className="w-full h-full flex justify-center items-center mt-10 md:mt-0 max-md:mt-8"
       >
         <Image
           src="/hero-bg.svg"
@@ -67,7 +67,7 @@ export const HeroContent = () => {
           height={650}
           width={650}
           draggable={false}
-          className="select-none w-full max-w-[min(90vw,450px)] md:max-w-[650px] h-auto"
+          className="select-none max-md:w-full max-md:max-w-[450px] max-md:h-auto"
         />
       </motion.div>
     </motion.div>

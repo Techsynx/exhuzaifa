@@ -1,29 +1,16 @@
 import { HeroContent } from "@/components/sub/hero-content";
 
 export const Hero = () => (
-  <div className="relative flex flex-col min-h-screen md:h-screen w-full overflow-x-hidden md:overflow-hidden">
-    {/* Mobile — original responsive offset */}
+  <div className="relative flex flex-col w-full max-md:overflow-x-hidden md:h-screen md:overflow-hidden">
     <video
       autoPlay
       muted
       loop
       playsInline
-      className="md:hidden rotate-180 absolute left-0 w-full h-full object-cover -z-20 top-[-200px]"
+      className="rotate-180 pointer-events-none absolute left-0 w-full object-cover -z-20 top-[-200px] h-[calc(100%+200px)] object-[50%_100%] md:top-[-250px] md:h-full md:object-center"
     >
       <source src="/videos/blackhole.webm" type="video/webm" />
     </video>
-
-    {/* Desktop — unchanged */}
-    <video
-      autoPlay
-      muted
-      loop
-      playsInline
-      className="hidden md:block rotate-180 absolute left-0 w-full h-full object-cover -z-20 top-[-250px] object-center"
-    >
-      <source src="/videos/blackhole.webm" type="video/webm" />
-    </video>
-
     <HeroContent />
   </div>
 );
