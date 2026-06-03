@@ -65,7 +65,29 @@
 
 html {
   overflow-x: hidden;
+  scrollbar-color: #2a0e61 #030014;
+  scrollbar-width: thin;
+}
+
+body {
   overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #030014;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a0e61;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7042f8;
 }
 
 @keyframes scrollBg {
