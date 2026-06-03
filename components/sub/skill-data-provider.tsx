@@ -38,15 +38,8 @@ export const SkillDataProvider = ({
       animate={inView ? "visible" : "hidden"}
       custom={index}
       transition={{ delay: index * animationDelay }}
-      className="group flex items-center justify-center rounded-xl p-2 transition-all duration-300 hover:bg-white/5 hover:scale-110"
     >
-      <Image
-        src={`/skills/${src}`}
-        width={width}
-        height={height}
-        alt={name}
-        className="grayscale opacity-50 transition-all duration-300 ease-out group-hover:grayscale-0 group-hover:opacity-100 group-hover:drop-shadow-[0_0_12px_rgba(168,85,247,0.45)]"
-      />
+      <Image src={`/skills/${src}`} width={width} height={height} alt={name} />
     </motion.div>
   );
 };

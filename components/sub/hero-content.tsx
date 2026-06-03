@@ -15,19 +15,21 @@ export const HeroContent = () => {
     <motion.div
       initial="hidden"
       animate="visible"
-      className="relative z-[20] flex flex-col md:flex-row items-center md:items-start justify-between gap-10 px-4 md:px-16 lg:px-24 pt-28 md:pt-36 pb-16 md:pb-24 w-full max-w-7xl mx-auto min-h-screen"
+      className="flex flex-col md:flex-row items-center justify-center px-4 md:px-20 mt-28 md:mt-20 w-full z-[20]"
     >
-      <div className="w-full md:max-w-[580px] flex flex-col gap-5 md:rounded-3xl md:border md:border-purple-500/10 md:bg-[#030014]/40 md:backdrop-blur-md md:p-8 md:shadow-[0_0_40px_rgba(42,14,97,0.35)]">
+      <div className="h-full w-full flex flex-col gap-5 justify-center m-auto text-start">
         <motion.div
           variants={slideInFromTop}
           className="Welcome-box py-[8px] px-[7px] border border-[#7042f88b] opacity-[0.9]"
         >
           <SparklesIcon className="text-[#b49bff] mr-[10px] h-5 w-5" />
-          <h1 className="Welcome-text text-[13px]">AI Engineer Portfolio</h1>
+          <h1 className="Welcome-text text-[13px]">
+            AI Engineer Portfolio
+          </h1>
         </motion.div>
 
         <motion.div
-          className="flex flex-col gap-4 mt-2 text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight"
+          className="flex flex-col gap-6 mt-6 text-6xl font-bold text-white max-w-[600px] w-auto h-auto"
           variants={slideInFromLeft(0.5)}
         >
           <span>
@@ -40,7 +42,7 @@ export const HeroContent = () => {
 
         <motion.p
           variants={slideInFromLeft(0.8)}
-          className="text-base md:text-lg text-gray-300 leading-relaxed"
+          className="text-lg text-gray-400 my-5 max-w-[600px]"
         >
           Aspiring Machine Learning and AI Engineer with a strong foundation in
           web development, Computer Science, and data analysis. Passionate about
@@ -49,8 +51,7 @@ export const HeroContent = () => {
 
         <motion.a
           variants={slideInFromLeft(1)}
-          href="#skills"
-          className="py-2.5 px-6 button-primary text-center text-white cursor-pointer rounded-lg w-fit mt-2"
+          className="py-2 px-6 button-primary text-center text-white cursor-pointer rounded-lg max-w-[200px]"
         >
           Learn more
         </motion.a>
@@ -58,15 +59,15 @@ export const HeroContent = () => {
 
       <motion.div
         variants={slideInFromRight(0.8)}
-        className="hidden lg:flex flex-1 justify-end items-center opacity-80"
+        className="w-full h-full flex justify-center items-center mt-10 md:mt-0"
       >
         <Image
           src="/hero-bg.svg"
           alt="work icons"
-          height={520}
-          width={520}
+          height={650}
+          width={650}
           draggable={false}
-          className="select-none drop-shadow-[0_0_30px_rgba(112,66,248,0.25)]"
+          className="select-none"
         />
       </motion.div>
     </motion.div>
