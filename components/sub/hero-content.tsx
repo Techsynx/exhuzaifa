@@ -17,7 +17,12 @@ export const HeroContent = () => {
       animate="visible"
       className="relative flex flex-col md:flex-row items-center justify-center px-4 md:px-20 mt-28 md:mt-20 w-full z-[20] max-md:pb-10"
     >
-      <div className="h-full w-full flex flex-col gap-5 justify-center m-auto text-start">
+      <div className="relative h-full w-full flex flex-col gap-5 justify-center m-auto text-start max-md:rounded-2xl max-md:p-5 max-md:border max-md:border-purple-500/20 max-md:bg-[#030014]/50 max-md:backdrop-blur-md max-md:shadow-[0_8px_32px_rgba(3,0,20,0.45)]">
+        {/* Mobile-only: soft gradient so blackhole glow still shows at edges */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 rounded-2xl md:hidden bg-gradient-to-b from-[#030014]/30 via-[#030014]/70 to-[#030014]/40"
+        />
         <motion.div
           variants={slideInFromTop}
           className="Welcome-box py-[8px] px-[7px] border border-[#7042f88b] opacity-[0.9]"
@@ -42,7 +47,7 @@ export const HeroContent = () => {
 
         <motion.p
           variants={slideInFromLeft(0.8)}
-          className="text-lg text-gray-400 my-5 max-w-[600px]"
+          className="relative text-lg text-gray-400 my-5 max-w-[600px] max-md:text-gray-200"
         >
           Aspiring Machine Learning and AI Engineer with a strong foundation in
           web development, Computer Science, and data analysis. Passionate about
