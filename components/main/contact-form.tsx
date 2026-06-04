@@ -19,7 +19,7 @@ function PlanetModel() {
     const box = new Box3().setFromObject(scene);
     const sizeVec = box.getSize(new Vector3());
     const maxDim = Math.max(sizeVec.x, sizeVec.y, sizeVec.z);
-    const target = size.width < 768 ? 2.8 : 3.8;
+    const target = size.width < 768 ? 3.35 : 4.75;
     const scale = maxDim > 0 ? target / maxDim : 1;
 
     scene.scale.setScalar(scale);
@@ -31,7 +31,7 @@ function PlanetModel() {
     scene.position.z += -center.z;
 
     const fov = ((camera as PerspectiveCamera).fov * Math.PI) / 180;
-    const cameraZ = Math.abs((target / 2) / Math.tan(fov / 2)) * (size.width < 768 ? 2.2 : 1.95);
+    const cameraZ = Math.abs((target / 2) / Math.tan(fov / 2)) * (size.width < 768 ? 2.1 : 1.85);
     camera.position.set(0, 0.1, cameraZ);
     camera.updateProjectionMatrix();
   }, [scene, camera, size.width]);
@@ -92,15 +92,16 @@ export const ContactForm = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="w-full max-w-[1400px] grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-10 items-center"
+        className="w-full max-w-[1400px] grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-10 items-stretch"
       >
-        <motion.div variants={slideInFromLeft(0.5)} className="relative min-h-[480px] sm:min-h-[620px] lg:min-h-[760px]">
+        <motion.div variants={slideInFromLeft(0.5)} className="relative h-full min-h-[520px] sm:min-h-[660px] lg:min-h-[780px]">
           <div className="absolute inset-0 pointer-events-none bg-transparent" />
           <Suspense fallback={<PlanetFallback />}>
             <Canvas
               shadows
               camera={{ position: [0, 0.1, 10], fov: 45 }}
               gl={{ alpha: true, antialias: true }}
+              className="absolute inset-0"
               style={{ background: "transparent", width: "100%", height: "100%" }}
             >
               <ambientLight intensity={0.85} />
@@ -112,7 +113,7 @@ export const ContactForm = () => {
               <ContactShadows
                 position={[0, -1.35, 0]}
                 opacity={0.22}
-                scale={8}
+                scale={9.5}
                 blur={3.2}
                 far={5}
                 resolution={128}
@@ -132,7 +133,7 @@ export const ContactForm = () => {
           </Suspense>
         </motion.div>
 
-        <motion.div variants={slideInFromRight(0.8)} className="relative w-full flex flex-col items-stretch">
+        <motion.div variants={slideInFromRight(0.8)} className="relative w-full h-full flex flex-col items-stretch justify-center">
           {/* Success Overlay */}
           {success && (
             <div className="absolute inset-0 bg-[#030014]/90 z-20 flex flex-col items-center justify-center text-center p-10 animate-in fade-in duration-500">
