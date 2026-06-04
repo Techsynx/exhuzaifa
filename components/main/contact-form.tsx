@@ -19,7 +19,7 @@ function PlanetModel() {
     const box = new Box3().setFromObject(scene);
     const sizeVec = box.getSize(new Vector3());
     const maxDim = Math.max(sizeVec.x, sizeVec.y, sizeVec.z);
-    const target = size.width < 768 ? 2.2 : 2.8;
+    const target = size.width < 768 ? 2.8 : 3.8;
     const scale = maxDim > 0 ? target / maxDim : 1;
 
     scene.scale.setScalar(scale);
@@ -31,8 +31,8 @@ function PlanetModel() {
     scene.position.z += -center.z;
 
     const fov = ((camera as PerspectiveCamera).fov * Math.PI) / 180;
-    const cameraZ = Math.abs((target / 2) / Math.tan(fov / 2)) * (size.width < 768 ? 2.0 : 1.75);
-    camera.position.set(0, 0.05, cameraZ);
+    const cameraZ = Math.abs((target / 2) / Math.tan(fov / 2)) * (size.width < 768 ? 2.2 : 1.95);
+    camera.position.set(0, 0.1, cameraZ);
     camera.updateProjectionMatrix();
   }, [scene, camera, size.width]);
 
@@ -92,14 +92,14 @@ export const ContactForm = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="w-full max-w-[1400px] grid grid-cols-1 lg:grid-cols-2 gap-10 items-center"
+        className="w-full max-w-[1400px] grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-10 items-center"
       >
-        <motion.div variants={slideInFromLeft(0.5)} className="relative min-h-[360px] sm:min-h-[520px] lg:min-h-[680px]">
+        <motion.div variants={slideInFromLeft(0.5)} className="relative min-h-[480px] sm:min-h-[620px] lg:min-h-[760px]">
           <div className="absolute inset-0 pointer-events-none bg-transparent" />
           <Suspense fallback={<PlanetFallback />}>
             <Canvas
               shadows
-              camera={{ position: [0, 0.05, 8], fov: 45 }}
+              camera={{ position: [0, 0.1, 10], fov: 45 }}
               gl={{ alpha: true, antialias: true }}
               style={{ background: "transparent", width: "100%", height: "100%" }}
             >
@@ -120,12 +120,12 @@ export const ContactForm = () => {
               />
 
               <OrbitControls
-                enableZoom={true}
                 enablePan={false}
                 enableDamping={true}
                 dampingFactor={0.08}
-                minDistance={0.5}
-                maxDistance={30}
+                enableZoom={false}
+                minDistance={1}
+                maxDistance={1}
                 autoRotate={false}
               />
             </Canvas>
