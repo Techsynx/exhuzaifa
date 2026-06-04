@@ -23,10 +23,10 @@ export default function Home() {
         <Skills />
         <Encryption />
         <Projects />
-        <EnduranceModel />
         <CodeShowcase />
         <Chatbot />
         <ContactForm />
+        <EnduranceModel />
       </div>
     </main>
   );

@@ -141,7 +141,7 @@ export const Chatbot = () => {
             
             <div className="flex flex-col items-center">
               <span className="text-[9px] md:text-xs font-bold tracking-widest opacity-60 mb-0.5">
-                {isOpen ? "TERMINATE" : "INITIALIZE"}
+                {isOpen ? "TERMINATE" : "Tap to chat"}
               </span>
               <SparklesIcon className={`h-5 w-5 md:h-6 md:w-6 ${isOpen ? "text-red-500 rotate-45" : "text-purple-400"} transition-all duration-500`} />
             </div>

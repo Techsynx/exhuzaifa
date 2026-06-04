@@ -137,7 +137,7 @@ export const SOCIALS = [
   {
     name: "LinkedIn",
     icon: RxLinkedinLogo,
-    link: "https://www.linkedin.com/in/exhuzaifa",
+    link: "https://pk.linkedin.com/in/huzaifa-malikk",
   },
   {
     name: "GitHub",
@@ -218,7 +218,7 @@ export const FOOTER_DATA = [
       {
         name: "LinkedIn",
         icon: RxLinkedinLogo,
-        link: "https://www.linkedin.com/in/exhuzaifa",
+        link: "https://pk.linkedin.com/in/huzaifa-malikk",
       },
       {
         name: "GitHub",

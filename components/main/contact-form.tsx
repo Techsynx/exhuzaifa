@@ -1,9 +1,57 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { Suspense, useEffect, useRef, useState } from "react";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { ContactShadows, OrbitControls, useGLTF, Float } from "@react-three/drei";
+import { Box3, Group, PerspectiveCamera, Vector3 } from "three";
 import { motion } from "framer-motion";
 import { EnvelopeIcon, PhoneIcon, UserIcon, ChatBubbleBottomCenterTextIcon } from "@heroicons/react/24/outline";
 import { slideInFromLeft, slideInFromRight } from "@/lib/motion";
+
+function PlanetModel() {
+  const { scene } = useGLTF("/planet/scene.gltf");
+  const ref = useRef<Group | null>(null);
+  const { camera, size } = useThree();
+
+  useEffect(() => {
+    if (!scene) return;
+
+    const box = new Box3().setFromObject(scene);
+    const sizeVec = box.getSize(new Vector3());
+    const maxDim = Math.max(sizeVec.x, sizeVec.y, sizeVec.z);
+    const target = size.width < 768 ? 2.2 : 2.8;
+    const scale = maxDim > 0 ? target / maxDim : 1;
+
+    scene.scale.setScalar(scale);
+
+    const centeredBox = new Box3().setFromObject(scene);
+    const center = centeredBox.getCenter(new Vector3());
+    scene.position.x += -center.x;
+    scene.position.y += -center.y;
+    scene.position.z += -center.z;
+
+    const fov = ((camera as PerspectiveCamera).fov * Math.PI) / 180;
+    const cameraZ = Math.abs((target / 2) / Math.tan(fov / 2)) * (size.width < 768 ? 2.0 : 1.75);
+    camera.position.set(0, 0.05, cameraZ);
+    camera.updateProjectionMatrix();
+  }, [scene, camera, size.width]);
+
+  useFrame(() => {
+    if (ref.current) {
+      ref.current.rotation.y += 0.0025;
+    }
+  });
+
+  return (
+    <Float speed={1.1} rotationIntensity={0.12} floatIntensity={0.15}>
+      <primitive ref={ref} object={scene} />
+    </Float>
+  );
+}
+
+function PlanetFallback() {
+  return <div className="h-full w-full" />;
+}
 
 export const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -39,24 +87,52 @@ export const ContactForm = () => {
   };
 
   return (
-    <section id="contact" className="relative flex flex-col items-center justify-center py-6 px-4 md:px-5 z-[20]">
+    <section id="contact" className="relative flex flex-col items-center justify-center py-10 px-4 md:px-6 z-[20]">
       <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="w-full max-w-[800px] flex flex-col items-center"
+        className="w-full max-w-[1400px] grid grid-cols-1 lg:grid-cols-2 gap-10 items-center"
       >
-        <motion.div
-          variants={slideInFromLeft(0.5)}
-          className="text-3xl md:text-[40px] font-bold text-white text-center mb-6 md:mb-10"
-        >
-          Connect with <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">Huzaifa</span>
+        <motion.div variants={slideInFromLeft(0.5)} className="relative min-h-[360px] sm:min-h-[520px] lg:min-h-[680px]">
+          <div className="absolute inset-0 pointer-events-none bg-transparent" />
+          <Suspense fallback={<PlanetFallback />}>
+            <Canvas
+              shadows
+              camera={{ position: [0, 0.05, 8], fov: 45 }}
+              gl={{ alpha: true, antialias: true }}
+              style={{ background: "transparent", width: "100%", height: "100%" }}
+            >
+              <ambientLight intensity={0.85} />
+              <directionalLight position={[8, 10, 5]} intensity={1.4} color="#ffffff" castShadow />
+              <pointLight position={[-6, -4, -5]} intensity={0.25} color="#1CAAD9" />
+
+              <PlanetModel />
+
+              <ContactShadows
+                position={[0, -1.35, 0]}
+                opacity={0.22}
+                scale={8}
+                blur={3.2}
+                far={5}
+                resolution={128}
+                color="#000000"
+              />
+
+              <OrbitControls
+                enableZoom={true}
+                enablePan={false}
+                enableDamping={true}
+                dampingFactor={0.08}
+                minDistance={0.5}
+                maxDistance={30}
+                autoRotate={false}
+              />
+            </Canvas>
+          </Suspense>
         </motion.div>
 
-        <motion.div
-          variants={slideInFromRight(0.8)}
-          className="w-full bg-[#030014]/60 backdrop-blur-xl rounded-3xl p-4 sm:p-8 border border-white/10 shadow-2xl relative overflow-hidden"
-        >
+        <motion.div variants={slideInFromRight(0.8)} className="relative w-full flex flex-col items-stretch">
           {/* Success Overlay */}
           {success && (
             <div className="absolute inset-0 bg-[#030014]/90 z-20 flex flex-col items-center justify-center text-center p-10 animate-in fade-in duration-500">
@@ -75,6 +151,10 @@ export const ContactForm = () => {
               </button>
             </div>
           )}
+
+          <div className="mb-6 text-3xl md:text-[40px] font-bold text-white text-left">
+            Connect with <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">Huzaifa</span>
+          </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -149,9 +229,6 @@ export const ContactForm = () => {
             </button>
           </form>
 
-          {/* Background Glows */}
-          <div className="absolute -top-24 -right-24 w-48 h-48 bg-purple-500/10 rounded-full blur-[80px] pointer-events-none"></div>
-          <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-cyan-500/10 rounded-full blur-[80px] pointer-events-none"></div>
         </motion.div>
       </motion.div>
     </section>
