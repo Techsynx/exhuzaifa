@@ -1,56 +1,36 @@
 "use client";
 
-import React, { Suspense, useEffect, useRef, useState } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { ContactShadows, OrbitControls, useGLTF, Float } from "@react-three/drei";
-import { Box3, Group, PerspectiveCamera, Vector3 } from "three";
+import React, { Suspense, useState } from "react";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, useGLTF } from "@react-three/drei";
 import { motion } from "framer-motion";
 import { EnvelopeIcon, PhoneIcon, UserIcon, ChatBubbleBottomCenterTextIcon } from "@heroicons/react/24/outline";
 import { slideInFromLeft, slideInFromRight } from "@/lib/motion";
 
-function PlanetModel() {
-  const { scene } = useGLTF("/planet/scene.gltf");
-  const ref = useRef<Group | null>(null);
-  const { camera, size } = useThree();
-
-  useEffect(() => {
-    if (!scene) return;
-
-    const box = new Box3().setFromObject(scene);
-    const sizeVec = box.getSize(new Vector3());
-    const maxDim = Math.max(sizeVec.x, sizeVec.y, sizeVec.z);
-    const target = size.width < 768 ? 3.35 : 4.75;
-    const scale = maxDim > 0 ? target / maxDim : 1;
-
-    scene.scale.setScalar(scale);
-
-    const centeredBox = new Box3().setFromObject(scene);
-    const center = centeredBox.getCenter(new Vector3());
-    scene.position.x += -center.x;
-    scene.position.y += -center.y;
-    scene.position.z += -center.z;
-
-    const fov = ((camera as PerspectiveCamera).fov * Math.PI) / 180;
-    const cameraZ = Math.abs((target / 2) / Math.tan(fov / 2)) * (size.width < 768 ? 2.1 : 1.85);
-    camera.position.set(0, 0.1, cameraZ);
-    camera.updateProjectionMatrix();
-  }, [scene, camera, size.width]);
-
-  useFrame(() => {
-    if (ref.current) {
-      ref.current.rotation.y += 0.0025;
-    }
-  });
-
-  return (
-    <Float speed={1.1} rotationIntensity={0.12} floatIntensity={0.15}>
-      <primitive ref={ref} object={scene} />
-    </Float>
-  );
+function Planet() {
+  const planet = useGLTF("/planet/scene.gltf");
+  return <primitive object={planet.scene} scale={2.5} position-y={0} rotation-y={0} />;
 }
 
-function PlanetFallback() {
-  return <div className="h-full w-full" />;
+function PlanetCanvas() {
+  return (
+    <Canvas
+      shadows
+      frameloop="demand"
+      gl={{ preserveDrawingBuffer: true }}
+      camera={{ fov: 45, near: 0.1, far: 200, position: [-4, 3, 6] }}
+    >
+      <Suspense fallback={null}>
+        <OrbitControls
+          autoRotate
+          enableZoom={false}
+          maxPolarAngle={Math.PI / 2}
+          minPolarAngle={Math.PI / 2}
+        />
+        <Planet />
+      </Suspense>
+    </Canvas>
+  );
 }
 
 export const ContactForm = () => {
@@ -92,45 +72,10 @@ export const ContactForm = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="w-full max-w-[1400px] grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-10 items-stretch"
+        className="w-full max-w-[1400px] grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch min-h-[750px] lg:min-h-[850px]"
       >
-        <motion.div variants={slideInFromLeft(0.5)} className="relative h-full min-h-[520px] sm:min-h-[660px] lg:min-h-[780px]">
-          <div className="absolute inset-0 pointer-events-none bg-transparent" />
-          <Suspense fallback={<PlanetFallback />}>
-            <Canvas
-              shadows
-              camera={{ position: [0, 0.1, 10], fov: 45 }}
-              gl={{ alpha: true, antialias: true }}
-              className="absolute inset-0"
-              style={{ background: "transparent", width: "100%", height: "100%" }}
-            >
-              <ambientLight intensity={0.85} />
-              <directionalLight position={[8, 10, 5]} intensity={1.4} color="#ffffff" castShadow />
-              <pointLight position={[-6, -4, -5]} intensity={0.25} color="#1CAAD9" />
-
-              <PlanetModel />
-
-              <ContactShadows
-                position={[0, -1.35, 0]}
-                opacity={0.22}
-                scale={9.5}
-                blur={3.2}
-                far={5}
-                resolution={128}
-                color="#000000"
-              />
-
-              <OrbitControls
-                enablePan={false}
-                enableDamping={true}
-                dampingFactor={0.08}
-                enableZoom={false}
-                minDistance={1}
-                maxDistance={1}
-                autoRotate={false}
-              />
-            </Canvas>
-          </Suspense>
+        <motion.div variants={slideInFromLeft(0.5)} className="relative w-full h-full">
+          <PlanetCanvas />
         </motion.div>
 
         <motion.div variants={slideInFromRight(0.8)} className="relative w-full h-full flex flex-col items-stretch justify-center">
