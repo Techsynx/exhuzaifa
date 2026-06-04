@@ -19,7 +19,7 @@ function Model({ controlsRef, rotateEnabled }) {
     const maxDim = Math.max(size.x, size.y, size.z)
 
     // desired visible size (scene units)
-    const desired = 4
+    const desired = 3
     const scale = maxDim > 0 ? desired / maxDim : 1
     scene.scale.setScalar(scale)
 
