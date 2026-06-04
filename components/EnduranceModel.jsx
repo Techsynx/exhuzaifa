@@ -130,7 +130,7 @@ export default function EnduranceModel() {
 
           <OrbitControls
             ref={controlsRef}
-            enableZoom={false}
+            enableZoom={true}
             enablePan={false}
             enableDamping={true}
             dampingFactor={0.08}
