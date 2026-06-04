@@ -1,41 +1,53 @@
 "use client"
 
-import { Suspense, useRef, useEffect } from 'react'
+import { Suspense, useRef, useEffect, useState } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { useGLTF, OrbitControls, Stars } from '@react-three/drei'
+import { useGLTF, OrbitControls } from '@react-three/drei'
 import { Box3, Vector3 } from 'three'
 
-function Model({ controlsRef }) {
+function Model({ controlsRef, rotateEnabled }) {
   const { scene } = useGLTF('/models/endurance/endurance.glb')
   const ref = useRef()
   const { camera } = useThree()
 
-  // Auto-fit camera to model bounds on load
   useEffect(() => {
     if (!scene) return
+
+    // compute bounds
     const box = new Box3().setFromObject(scene)
-    const center = box.getCenter(new Vector3())
     const size = box.getSize(new Vector3())
     const maxDim = Math.max(size.x, size.y, size.z)
-    const fov = (camera.fov * Math.PI) / 180
-    const cameraZ = Math.abs((maxDim / 2) / Math.tan(fov / 2)) * 1.8
 
-    camera.position.set(center.x, center.y + maxDim * 0.2, center.z + cameraZ)
+    // desired visible size (scene units)
+    const desired = 4
+    const scale = maxDim > 0 ? desired / maxDim : 1
+    scene.scale.setScalar(scale)
+
+    // center model at origin
+    const box2 = new Box3().setFromObject(scene)
+    const center = box2.getCenter(new Vector3())
+    scene.position.x += -center.x
+    scene.position.y += -center.y
+    scene.position.z += -center.z
+
+    // position camera to fit the scaled model
+    const fov = (camera.fov * Math.PI) / 180
+    const cameraZ = Math.abs((desired / 2) / Math.tan(fov / 2)) * 1.6
+    camera.position.set(0, desired * 0.25, cameraZ)
     camera.updateProjectionMatrix()
 
     if (controlsRef && controlsRef.current) {
-      controlsRef.current.target.copy(center)
+      controlsRef.current.target.set(0, 0, 0)
       controlsRef.current.update()
+      controlsRef.current.saveState && controlsRef.current.saveState()
     }
   }, [scene, camera, controlsRef])
 
   useFrame(() => {
-    if (ref.current) {
-      ref.current.rotation.y += 0.003
-    }
+    if (ref.current && rotateEnabled) ref.current.rotation.y += 0.003
   })
 
-  return <primitive ref={ref} object={scene} scale={2} position={[0, 0, 0]} />
+  return <primitive ref={ref} object={scene} />
 }
 
 function LoadingSpinner() {
@@ -59,13 +71,13 @@ function LoadingSpinner() {
 export default function EnduranceModel() {
   const containerRef = useRef(null)
   const controlsRef = useRef(null)
+  const [rotateEnabled, setRotateEnabled] = useState(true)
 
   const toggleFullscreen = async () => {
     const el = containerRef.current
     if (!el) return
     if (!document.fullscreenElement) {
       try {
-        // request fullscreen on container
         await el.requestFullscreen?.()
       } catch (e) {
         // ignore
@@ -75,9 +87,16 @@ export default function EnduranceModel() {
     }
   }
 
+  const resetView = () => {
+    if (controlsRef && controlsRef.current) {
+      controlsRef.current.reset && controlsRef.current.reset()
+      controlsRef.current.update()
+    }
+  }
+
   return (
     <section
-      id='endurance'
+      id="endurance"
       style={{
         width: '100%',
         minHeight: '100vh',
@@ -127,44 +146,81 @@ export default function EnduranceModel() {
           position: 'relative'
         }}
       >
-        {/* Fullscreen toggle button */}
-        <button
-          onClick={toggleFullscreen}
-          aria-label='Toggle fullscreen'
-          style={{
-            position: 'absolute',
-            left: 12,
-            bottom: 12,
-            zIndex: 50,
-            width: 44,
-            height: 44,
-            borderRadius: 12,
-            border: 'none',
-            background: 'linear-gradient(135deg,#1CAAD9,#6EE7B7)',
-            color: '#001219',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer',
-            boxShadow: '0 6px 18px rgba(28,170,217,0.18)'
-          }}
-        >
-          ⤢
-        </button>
+        {/* Controls toolbar */}
+        <div style={{ position: 'absolute', left: 12, bottom: 12, zIndex: 60, display: 'flex', gap: 8 }}>
+          <button
+            onClick={toggleFullscreen}
+            aria-label="Toggle fullscreen"
+            style={{
+              width: 44,
+              height: 44,
+              borderRadius: 12,
+              border: 'none',
+              background: 'linear-gradient(135deg,#1CAAD9,#6EE7B7)',
+              color: '#001219',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              boxShadow: '0 6px 18px rgba(28,170,217,0.18)'
+            }}
+          >
+            ⤢
+          </button>
+
+          <button
+            onClick={() => setRotateEnabled((v) => !v)}
+            aria-label="Toggle rotation"
+            style={{
+              width: 44,
+              height: 44,
+              borderRadius: 12,
+              border: 'none',
+              background: rotateEnabled ? '#e2e8f0' : '#101219',
+              color: rotateEnabled ? '#001219' : '#fff',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              boxShadow: '0 6px 18px rgba(0,0,0,0.18)'
+            }}
+          >
+            ⟳
+          </button>
+
+          <button
+            onClick={resetView}
+            aria-label="Reset view"
+            style={{
+              width: 44,
+              height: 44,
+              borderRadius: 12,
+              border: 'none',
+              background: '#fff',
+              color: '#001219',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              boxShadow: '0 6px 18px rgba(0,0,0,0.12)'
+            }}
+          >
+            ⤾
+          </button>
+        </div>
+
         <Suspense fallback={<LoadingSpinner />}>
           <Canvas
             camera={{ position: [0, 2, 12], fov: 45 }}
             gl={{ alpha: true, antialias: true }}
             style={{ background: 'transparent', width: '100%', height: '100%' }}
           >
-            <ambientLight intensity={0.3} />
-            <directionalLight position={[10, 10, 5]} intensity={1.2} color='#ffffff' />
-            <pointLight position={[-10, -10, -5]} intensity={0.5} color='#1CAAD9' />
-            <pointLight position={[5, 5, 5]} intensity={0.3} color='#4fc3f7' />
+            <ambientLight intensity={0.6} />
+            <directionalLight position={[10, 10, 5]} intensity={1.0} color="#ffffff" />
+            <pointLight position={[-10, -10, -5]} intensity={0.4} color="#1CAAD9" />
+            <pointLight position={[5, 5, 5]} intensity={0.25} color="#4fc3f7" />
 
-            <Stars radius={100} depth={50} count={3000} factor={4} fade speed={1} />
-
-            <Model controlsRef={controlsRef} />
+            <Model controlsRef={controlsRef} rotateEnabled={rotateEnabled} />
 
             <OrbitControls
               ref={controlsRef}
@@ -172,8 +228,8 @@ export default function EnduranceModel() {
               enablePan={false}
               enableDamping={true}
               dampingFactor={0.08}
-              minDistance={1}
-              maxDistance={100}
+              minDistance={0.5}
+              maxDistance={200}
               autoRotate={false}
             />
           </Canvas>
