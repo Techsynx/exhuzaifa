@@ -7,7 +7,10 @@ export const Hero = () => (
       muted
       loop
       playsInline
-      className="rotate-180 pointer-events-none absolute left-0 w-full object-cover -z-20 top-[-200px] h-[calc(100%+200px)] object-[50%_100%] md:top-[-250px] md:h-full md:object-center"
+      className="rotate-180 pointer-events-none absolute left-0 w-full object-cover -z-20 
+        top-[-200px] h-[calc(100%+200px)] object-[50%_100%] 
+        md:top-[-250px] md:h-full md:object-center
+        max-md:top-[-80px] max-md:h-[55%] max-md:opacity-50"
     >
       <source src="/videos/blackhole.webm" type="video/webm" />
     </video>
