@@ -1,19 +1,105 @@
 "use client";
 import { SparklesIcon } from "@heroicons/react/24/solid";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 import {
   slideInFromLeft,
   slideInFromRight,
   slideInFromTop,
 } from "@/lib/motion";
 
+const GlitchMalik = () => {
+  const [hovered, setHovered] = useState(false);
+  const [glitching, setGlitching] = useState(false);
+  const [displayText, setDisplayText] = useState("Malik");
+
+  const glitchChars = "!@#$%^&*<>?/\\|[]{}~`";
+
+  useEffect(() => {
+    if (hovered) {
+      setGlitching(true);
+      const target = "Kali";
+      const original = "Malik";
+      let iteration = 0;
+      const maxIterations = 10;
+
+      const interval = setInterval(() => {
+        if (iteration >= maxIterations) {
+          setDisplayText(target);
+          setGlitching(false);
+          clearInterval(interval);
+          return;
+        }
+        // random glitch characters same length as "Malik"
+        setDisplayText(
+          original
+            .split("")
+            .map((_, i) => {
+              if (iteration > maxIterations * 0.6 && i >= original.length - target.length) {
+                return target[i - (original.length - target.length)] ?? glitchChars[Math.floor(Math.random() * glitchChars.length)];
+              }
+              return glitchChars[Math.floor(Math.random() * glitchChars.length)];
+            })
+            .join("")
+        );
+        iteration++;
+      }, 50);
+
+      return () => clearInterval(interval);
+    } else {
+      // glitch back to Malik on mouse leave
+      setGlitching(true);
+      const target = "Malik";
+      let iteration = 0;
+      const maxIterations = 8;
+
+      const interval = setInterval(() => {
+        if (iteration >= maxIterations) {
+          setDisplayText(target);
+          setGlitching(false);
+          clearInterval(interval);
+          return;
+        }
+        setDisplayText(
+          target
+            .split("")
+            .map(() => glitchChars[Math.floor(Math.random() * glitchChars.length)])
+            .join("")
+        );
+        iteration++;
+      }, 40);
+
+      return () => clearInterval(interval);
+    }
+  }, [hovered]);
+
+  return (
+    <span
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="relative cursor-pointer select-none"
+      style={{
+        color: "white",
+        textShadow: hovered
+          ? "0 0 8px #fff, 0 0 20px #e0f0ff, 0 0 40px #a8d8ff, 0 0 60px #7bc8ff"
+          : "0 0 6px #fff, 0 0 15px #c8e8ff, 0 0 30px #6bb8ff",
+        transition: "text-shadow 0.3s ease",
+        fontFamily: glitching ? "monospace" : "inherit",
+        letterSpacing: glitching ? "0.05em" : "inherit",
+      }}
+    >
+      {displayText}
+    </span>
+  );
+};
+
 export const HeroContent = () => {
   return (
     <motion.div
       initial="hidden"
       animate="visible"
-      className="relative flex flex-col md:flex-row items-center justify-center px-4 md:px-20 mt-28 md:mt-20 w-full z-[20] max-md:pb-10 max-md:mt-36"
+      className="relative flex flex-col md:flex-row items-center justify-center px-4 md:px-20 mt-28 md:mt-20 w-full z-[20] max-md:pb-10 max-md:mt-28"
     >
       <div className="h-full w-full flex flex-col gap-5 justify-center m-auto text-start">
         <motion.div
@@ -29,10 +115,7 @@ export const HeroContent = () => {
           variants={slideInFromLeft(0.5)}
         >
           <span>
-            Huzaifa{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
-              Malik
-            </span>
+            Huzaifa <GlitchMalik />
           </span>
         </motion.div>
 
