@@ -14,7 +14,7 @@ const GlitchMalik = () => {
   const [glitching, setGlitching] = useState(false);
   const [displayText, setDisplayText] = useState("Malik");
 
-  const glitchChars = "likailaliaklai";
+  const glitchChars = "laikopertyudsfg";
 
   useEffect(() => {
     if (hovered) {
