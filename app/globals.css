@@ -123,3 +123,7 @@ body {
 .skill-icon-glow {
   animation: skill-icon-glow 3.5s ease-in-out infinite;
 }
+.ice-glow {
+  color: white;
+  text-shadow: 0 0 6px #fff, 0 0 15px #c8e8ff, 0 0 30px #6bb8ff;
+}
