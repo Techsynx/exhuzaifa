@@ -129,10 +129,12 @@ export const HeroContent = () => {
         </motion.p>
 
         <motion.a
-          variants={slideInFromLeft(1)}
-          className="py-2 px-6 button-primary text-center text-white cursor-pointer rounded-lg max-w-[200px]"
-        >
-          Learn more
+  href="/huzaifa.malik.pdf"
+  download="Huzaifa_Malik_Resume.pdf"
+  variants={slideInFromLeft(1)}
+  className="py-2 px-6 button-primary text-center text-white cursor-pointer rounded-lg max-w-[200px]"
+>
+  Download Resume
         </motion.a>
       </div>
 
