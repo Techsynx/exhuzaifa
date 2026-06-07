@@ -35,7 +35,7 @@ export const Projects = () => (
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="ice-glow"
+      className="text-[40px] font-semibold ice-glow text-center mb-10"
     >
       My Projects
     </motion.h1>
