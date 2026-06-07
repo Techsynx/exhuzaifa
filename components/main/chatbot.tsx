@@ -99,7 +99,7 @@ export const Chatbot = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3 }}
-            className="text-[40px] font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 text-center mb-10"
+            className="text-[40px] font-semibold ice-glow text-center mb-10"
           >
             Neural Chat Interface
           </motion.h1>
@@ -253,7 +253,7 @@ export const Chatbot = () => {
                 <button
                   key={q}
                   onClick={() => handleSend(q)}
-                  className="whitespace-nowrap px-3 py-1.5 rounded-full bg-[#ffffff] border border-[#e9edef] text-[#667781] text-xs hover:text-[#111b21] hover:border-[#00a884] transition-all active:scale-95 shadow-sm"
+                  className="whitespace-nowrap px-3 py-1.5 rounded-full bg-[#ffffff] border border-[#e9edef] text-[#667781] text-xs hover:text-[#111b21] hover:border-[#00a884] transition-all acti[...]"
                 >
                   {q}
                 </button>
@@ -270,20 +270,20 @@ export const Chatbot = () => {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSend()}
                 placeholder="Type a message..."
-                className="w-full bg-[#ffffff] border-none rounded-2xl px-6 py-4 text-[#111b21] outline-none focus:ring-1 focus:ring-[#00a884]/50 transition-all text-sm placeholder:text-[#667781]"
+                className="w-full bg-[#ffffff] border-none rounded-2xl px-6 py-4 text-[#111b21] outline-none focus:ring-1 focus:ring-[#00a884]/50 transition-all text-sm placeholder:text-[#667781][...]"
               />
             </div>
             <button
               onClick={() => handleSend()}
               disabled={isLoading}
-              className="h-14 w-14 flex items-center justify-center bg-[#00a884] hover:bg-[#06cf9c] text-white rounded-2xl transition-all hover:scale-105 active:scale-95 disabled:opacity-50 shadow-lg group"
+              className="h-14 w-14 flex items-center justify-center bg-[#00a884] hover:bg-[#06cf9c] text-white rounded-2xl transition-all hover:scale-105 active:scale-95 disabled:opacity-50 shado[...]"
             >
               <PaperAirplaneIcon className="h-6 w-6 group-hover:rotate-12 transition-transform" />
             </button>
           </div>
             </motion.div>
         )}
-      </AnimatePresence>
+       </AnimatePresence>
       </div>
     </section>
   );

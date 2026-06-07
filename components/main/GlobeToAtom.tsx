@@ -109,7 +109,7 @@ export const GlobeToAtom = () => {
             </motion.div>
             
             <motion.div style={{ opacity: atomOpacity }} className="absolute inset-0 flex flex-col items-center">
-                <h2 className="text-5xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 tracking-tighter uppercase italic mb-8">
+                <h2 className="text-5xl md:text-8xl font-black ice-glow tracking-tighter uppercase italic mb-8">
                     Atomic Detail
                 </h2>
                 

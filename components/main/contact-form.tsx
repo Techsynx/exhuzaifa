@@ -99,7 +99,7 @@ export const ContactForm = () => {
           )}
 
           <div className="mb-6 text-3xl md:text-[40px] font-bold text-white text-left">
-            Connect with <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">Huzaifa</span>
+            Connect with <span className="ice-glow">Huzaifa</span>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -114,7 +114,7 @@ export const ContactForm = () => {
                     name="name"
                     type="text"
                     placeholder="Huzaifa Malik"
-                    className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-6 text-white outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/20 transition-all"
+                    className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-6 text-white outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/20 transi[...]"
                   />
                 </div>
               </div>
@@ -129,7 +129,7 @@ export const ContactForm = () => {
                     name="phone"
                     type="tel"
                     placeholder="+92 3XX XXXXXXX"
-                    className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-6 text-white outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/20 transition-all"
+                    className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-6 text-white outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/20 transi[...]"
                   />
                 </div>
               </div>
@@ -145,7 +145,7 @@ export const ContactForm = () => {
                   name="email"
                   type="email"
                   placeholder="exhuzaifa@gmail.com"
-                  className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-6 text-white outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/20 transition-all"
+                  className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-6 text-white outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/20 transiti[...]"
                 />
               </div>
             </div>
@@ -160,7 +160,7 @@ export const ContactForm = () => {
                   name="message"
                   rows={4}
                   placeholder="How can we build the future together?"
-                  className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-6 text-white outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/20 transition-all resize-none"
+                  className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-6 text-white outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/20 transiti[...]"
                 ></textarea>
               </div>
             </div>
@@ -169,7 +169,7 @@ export const ContactForm = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-5 bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-bold rounded-2xl hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 disabled:hover:scale-100 shadow-[0_0_20px_rgba(147,51,234,0.3)]"
+              className="w-full py-5 bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-bold rounded-2xl hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 disabl[...]"
             >
               {isSubmitting ? "Sending to Orbit..." : "Launch Message"}
             </button>

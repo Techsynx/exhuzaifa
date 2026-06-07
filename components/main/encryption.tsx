@@ -12,7 +12,7 @@ export const Encryption = () => {
           className="text-3xl md:text-[40px] font-medium text-center text-gray-200"
         >
           Post{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
+          <span className="ice-glow">
             quantum
           </span>{" "}
           Security.
