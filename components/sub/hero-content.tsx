@@ -14,7 +14,7 @@ const GlitchMalik = () => {
   const [glitching, setGlitching] = useState(false);
   const [displayText, setDisplayText] = useState("Malik");
 
-  const glitchChars = "!@#$%^&*<>?/\\|[]{}~`";
+  const glitchChars = "likailaliaklai";
 
   useEffect(() => {
     if (hovered) {
@@ -123,9 +123,11 @@ export const HeroContent = () => {
           variants={slideInFromLeft(0.8)}
           className="text-lg text-gray-400 my-5 max-w-[600px]"
         >
-          Aspiring Machine Learning and AI Engineer with a strong foundation in
-          web development, Computer Science, and data analysis. Passionate about
-          building intelligent, data-driven solutions.
+           Machine Learning & AI Engineer with hands-on experience delivering
+  production-grade intelligent systems — from deep learning models and
+  NLP pipelines to full-stack AI-powered web applications. I bridge the
+  gap between research and real-world impact, turning complex data into
+  scalable, secure solutions that businesses can rely on.
         </motion.p>
 
         <motion.a
