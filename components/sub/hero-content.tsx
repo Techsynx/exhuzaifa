@@ -123,11 +123,9 @@ export const HeroContent = () => {
           variants={slideInFromLeft(0.8)}
           className="text-lg text-gray-400 my-5 max-w-[600px]"
         >
-           Machine Learning & AI Engineer with hands-on experience delivering
-  production-grade intelligent systems — from deep learning models and
-  NLP pipelines to full-stack AI-powered web applications. I bridge the
-  gap between research and real-world impact, turning complex data into
-  scalable, secure solutions that businesses can rely on.
+          AI Automation Engineer and Data Scientist with 3+ years delivering production-grade ML systems, agentic AI pipelines, and full-stack automation
+solutions across real estate and technology sectors. Proven track record building end-to-end RAG systems, RPA bots, and LLM-powered workflows
+
         </motion.p>
 
         <motion.a
