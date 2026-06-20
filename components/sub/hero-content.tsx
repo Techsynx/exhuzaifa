@@ -124,7 +124,7 @@ export const HeroContent = () => {
           className="text-lg text-gray-400 my-5 max-w-[600px]"
         >
           AI Automation Engineer and Data Scientist with 3+ years delivering production-grade ML systems, agentic AI pipelines, and full-stack automation
-solutions across real estate and technology sectors. Proven track record building end-to-end RAG systems, RPA bots, and LLM-powered workflows.Proven track record building end-to-end RAG systems, RPA bots, and LLM-powered workflows
+solutions across real estate and technology sectors.Proven track record in building end-to-end RAG systems, RPA bots, and LLM-powered workflows
 with n8n, LangChain, and Make.com — from feasibility through deployment and live monitoring. Skilled in predictive modelling, ETL orchestration, NLP,
 computer vision, and Web3 on-chain analytic.
 
