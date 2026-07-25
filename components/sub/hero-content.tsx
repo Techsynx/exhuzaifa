@@ -130,18 +130,14 @@ computer vision, and Web3 on-chain analytic.
 
         </motion.p>
 
-        <div className="flex gap-4 items-center">
-          <motion.a
-    href="/huzaifa.malik.pdf"
-    download="Huzaifa_Malik_Resume.pdf"
-    variants={slideInFromLeft(1)}
-    className="py-2 px-6 button-primary text-center text-white cursor-pointer rounded-lg max-w-[200px]"
-  >
-    Download Resume
-          </motion.a>
-          
-          <div className="contra-hire-me-button" data-analyticsUserId="41aa8d81-9651-4bac-8c2b-4d04000e290a" data-theme="light" data-username="huzaifa_malik"></div>
-        </div>
+        <motion.a
+  href="/huzaifa.malik.pdf"
+  download="Huzaifa_Malik_Resume.pdf"
+  variants={slideInFromLeft(1)}
+  className="py-2 px-6 button-primary text-center text-white cursor-pointer rounded-lg max-w-[200px]"
+>
+  Download Resume
+        </motion.a>
       </div>
 
       <motion.div

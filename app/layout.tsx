@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 // import { Inter } from "next/font/google";
 import type { PropsWithChildren } from "react";
-import Script from "next/script";
 
 import { Navbar } from "@/components/main/navbar";
 import { Footer } from "@/components/main/footer";
@@ -32,11 +31,6 @@ export default function RootLayout({ children }: PropsWithChildren) {
         <Navbar />
         {children}
         <Footer />
-        <Script
-          src="https://contra.com/static/embed/sdk.js"
-          async
-          strategy="lazyOnload"
-        />
       </body>
     </html>
   );
