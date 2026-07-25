@@ -35,7 +35,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
         <Script
           src="https://contra.com/static/embed/sdk.js"
           async
-          charset="utf-8"
+          charSet="utf-8"
         />
       </body>
     </html>
