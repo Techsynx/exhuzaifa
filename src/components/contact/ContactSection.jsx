@@ -130,39 +130,26 @@ export function ContactSection() {
     setStatus("sending");
     setErrorMsg("");
 
+    const subject = encodeURIComponent(`Portfolio Message: ${form.topic} (from ${form.name.trim()})`);
+    const body = encodeURIComponent(
+      `Hi Huzaifa,\n\nName: ${form.name.trim()}\nEmail: ${form.email.trim()}\nTopic: ${form.topic}\n\nMessage:\n${form.message.trim()}\n`
+    );
+    const mailtoUrl = `mailto:exhuzaifa@gmail.com?subject=${subject}&body=${body}`;
+
     try {
-      const accessKey = import.meta.env.VITE_WEB3FORMS_KEY;
       let ok = false;
 
-      // 1. Try Web3Forms if configured
-      if (accessKey && accessKey.trim()) {
-        try {
-          const res = await fetch("https://api.web3forms.com/submit", {
-            method: "POST",
-            headers: { "Content-Type": "application/json", Accept: "application/json" },
-            body: JSON.stringify({
-              access_key: accessKey.trim(),
-              name: form.name.trim(),
-              email: form.email.trim(),
-              need: form.topic,
-              message: form.message.trim(),
-              subject: `Portfolio Message from ${form.name.trim()} [${form.topic}]`,
-              from_name: "Huzaifa Malik Portfolio",
-              botcheck: "",
-            }),
-          });
-          const data = await res.json();
-          if (res.ok && data.success) ok = true;
-        } catch (e) {
-          console.warn("[ContactForm] Web3Forms attempt failed, falling back to FormSubmit:", e);
-        }
-      }
+      // 1. Try direct FormSubmit AJAX endpoint with 4.5s AbortController timeout
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 4500);
 
-      // 2. Direct delivery to exhuzaifa@gmail.com via FormSubmit
-      if (!ok) {
         const fsRes = await fetch("https://formsubmit.co/ajax/exhuzaifa@gmail.com", {
           method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
           body: JSON.stringify({
             name: form.name.trim(),
             email: form.email.trim(),
@@ -172,11 +159,16 @@ export function ContactSection() {
             _template: "table",
             _captcha: "false",
           }),
+          signal: controller.signal,
         });
-        const fsData = await fsRes.json();
+
+        clearTimeout(timeoutId);
+        const fsData = await fsRes.json().catch(() => ({}));
         if (fsRes.ok && (fsData.success === "true" || fsData.success === true)) {
           ok = true;
         }
+      } catch (e) {
+        console.warn("[ContactForm] Background delivery attempt:", e);
       }
 
       if (ok) {
@@ -187,15 +179,16 @@ export function ContactSection() {
         setErrors({});
         if (textareaRef.current) textareaRef.current.style.height = "auto";
         if (successTimerRef.current) clearTimeout(successTimerRef.current);
-        successTimerRef.current = setTimeout(() => setStatus((s) => (s === "success" ? "idle" : s)), 4000);
+        successTimerRef.current = setTimeout(() => setStatus((s) => (s === "success" ? "idle" : s)), 5000);
       } else {
-        setStatus("error");
-        setErrorMsg("Could not deliver automatically. Please email exhuzaifa@gmail.com directly.");
+        // Fallback: automatically launch the pre-filled mail client so message is never lost
+        window.location.href = mailtoUrl;
+        setStatus("fallback");
       }
     } catch (err) {
-      console.error("[ContactForm] Submission network error:", err);
-      setStatus("error");
-      setErrorMsg("Network error. Please email exhuzaifa@gmail.com directly.");
+      console.error("[ContactForm] Error, launching fallback:", err);
+      window.location.href = mailtoUrl;
+      setStatus("fallback");
     }
   };
 
@@ -253,6 +246,16 @@ export function ContactSection() {
       }
     };
   }, []);
+
+  const currentMailtoUrl = `mailto:exhuzaifa@gmail.com?subject=${encodeURIComponent(
+    `Portfolio Message: ${form.topic} (from ${form.name.trim() || "Visitor"})`
+  )}&body=${encodeURIComponent(
+    `Hi Huzaifa,\n\nName: ${form.name.trim()}\nEmail: ${form.email.trim()}\nTopic: ${form.topic}\n\nMessage:\n${form.message.trim()}\n`
+  )}`;
+
+  const currentWhatsappUrl = `https://wa.me/923268282409?text=${encodeURIComponent(
+    `Hi Huzaifa, I am ${form.name.trim() || "Visitor"}${form.email.trim() ? ` (${form.email.trim()})` : ""}. Regarding ${form.topic}:\n${form.message.trim()}`
+  )}`;
 
   return (
     <section id="contact" className="contact-section-wrapper" ref={sectionRef}>
@@ -533,6 +536,21 @@ export function ContactSection() {
                     </svg>
                   </span>
                 </button>
+                {status === "fallback" && (
+                  <div className="contact-fallback-box" role="status">
+                    <p className="contact-fallback-title">
+                      Launching your email app to send directly to <strong>exhuzaifa@gmail.com</strong>...
+                    </p>
+                    <div className="contact-fallback-actions">
+                      <a href={currentMailtoUrl} className="btn-pill-mail">
+                        ✉ Open in Email App
+                      </a>
+                      <a href={currentWhatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-pill-wa">
+                        💬 Send via WhatsApp
+                      </a>
+                    </div>
+                  </div>
+                )}
                 {status === "error" && (
                   <p className="contact-submit-error" role="alert" aria-live="polite">
                     {errorMsg || "Something went wrong. Please try again, or email me directly."}

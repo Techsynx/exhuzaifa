@@ -1,20 +1,24 @@
-/* Crisp fixed canvas background: koi blur/filter/scale/will-change nahi */
+/* Crisp fixed canvas background: perfectly synced dimensions and 100dvh */
 .fb-root {
   position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
   z-index: -1;
   pointer-events: none;
   overflow: hidden;
-  background: transparent;
+  background: #0d040a;
 }
 
 .fb-canvas {
   position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
   display: block;
   z-index: -1;
   pointer-events: none;

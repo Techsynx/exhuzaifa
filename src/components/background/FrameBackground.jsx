@@ -29,18 +29,40 @@ export default function FrameBackground() {
     let needsRedraw = true;
     let animId = 0;
 
+    let lastWidth = 0;
+    let lastHeight = 0;
+
     // Quality: Canvas sized to innerWidth/innerHeight x devicePixelRatio (capped at 2.0 on mobile, 2.5 on desktop)
-    const resizeCanvas = () => {
-      const isMobile =
-        window.innerWidth <= 768 ||
-        (window.innerWidth / window.innerHeight < 1.0 && window.innerWidth <= 1024);
-      const maxDpr = isMobile ? 2.0 : 2.5;
-      const dpr = Math.min(window.devicePixelRatio || 1, maxDpr);
+    const resizeCanvas = (force = false) => {
       const width = window.innerWidth;
       const height = window.innerHeight;
 
+      const isMobile =
+        width <= 768 ||
+        (width / height < 1.0 && width <= 1024);
+
+      // Prevent mobile address bar show/hide micro-resizes from causing canvas jump/stretch
+      if (!force && isMobile && lastWidth > 0) {
+        const dW = Math.abs(width - lastWidth);
+        const dH = Math.abs(height - lastHeight);
+        if (dW === 0 && dH < 140) {
+          return;
+        }
+      }
+
+      lastWidth = width;
+      lastHeight = height;
+
+      const maxDpr = isMobile ? 2.0 : 2.5;
+      const dpr = Math.min(window.devicePixelRatio || 1, maxDpr);
+
+      // Set internal buffer size
       canvas.width = Math.round(width * dpr);
       canvas.height = Math.round(height * dpr);
+
+      // Explicitly sync CSS display dimensions to avoid ANY browser stretching
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
 
       ctx.imageSmoothingEnabled = true;
       ctx.imageSmoothingQuality = "high";
@@ -71,8 +93,8 @@ export default function FrameBackground() {
       return bestIdx !== -1 ? images[bestIdx] : null;
     };
 
-    // Draw frame: on mobile uses custom top-anchored layout with face centering and bottom fade;
-    // on desktop uses cover-fit with watermark cropping.
+    // Draw frame: on mobile uses stable top-anchored layout with face centering and bottom fade;
+    // on desktop uses slightly reduced proportion (~13% smaller) so the body is perfectly framed.
     const drawFrame = (idx) => {
       const img = getLoadedImage(idx);
       if (!img || !img.naturalWidth) return false;
@@ -93,8 +115,8 @@ export default function FrameBackground() {
         ctx.fillStyle = "#0d040a";
         ctx.fillRect(0, 0, cw, ch);
 
-        // 2. Scale frame to comfortably show full head, hair and shoulders centered
-        const scale = Math.max((ch * 0.52) / ih, (cw * 0.95) / iw);
+        // 2. Scale frame: width-based stable anchor so scrolling doesn't stretch or distort
+        const scale = Math.max((ch * 0.48) / ih, (cw * 1.50) / iw);
         const dw = iw * scale;
         const dh = ih * scale;
 
@@ -102,49 +124,56 @@ export default function FrameBackground() {
         const dx = (cw - dw) / 2;
 
         // 4. Place near top, just below navbar
-        const dy = Math.max(12, ch * 0.055);
+        const dy = Math.max(14, ch * 0.04);
 
         // 5. Draw full uncropped frame: face completely visible, hair intact
         ctx.drawImage(img, 0, 0, iw, ih, dx, dy, dw, dh);
 
-        // 6. Fade bottom edge into dark maroon background
-        const grad = ctx.createLinearGradient(0, dy + dh * 0.65, 0, dy + dh);
+        // 6. Smooth fade bottom edge into dark maroon background
+        const fadeStart = dy + dh * 0.68;
+        const fadeEnd = dy + dh;
+        const grad = ctx.createLinearGradient(0, fadeStart, 0, fadeEnd);
         grad.addColorStop(0, "rgba(13, 4, 10, 0)");
         grad.addColorStop(1, "#0d040a");
         ctx.fillStyle = grad;
-        ctx.fillRect(0, dy + dh * 0.65, cw, dh * 0.35 + 2);
+        ctx.fillRect(0, fadeStart, cw, dh * 0.32 + 2);
 
         // 7. Solid #0d040a below image
         ctx.fillStyle = "#0d040a";
-        ctx.fillRect(0, dy + dh - 1, cw, Math.max(0, ch - (dy + dh) + 2));
+        ctx.fillRect(0, fadeEnd - 1, cw, Math.max(0, ch - fadeEnd + 2));
 
         return true;
       }
 
-      // DESKTOP: (screens > 768px): Cover-fit with zero watermark crop so hair & headroom are 100% visible
-      const sx = 0;
-      const sy = 0;
-      const sw = iw;
-      const sh = ih;
+      // DESKTOP: (screens > 768px):
+      // 1. Fill entire canvas with dark maroon studio background #0d040a first
+      ctx.fillStyle = "#0d040a";
+      ctx.fillRect(0, 0, cw, ch);
 
-      const canvasRatio = cw / ch;
-      const imageRatio = sw / sh;
+      // 2. Base cover scale
+      const coverScale = Math.max(cw / iw, ch / ih);
+      // Scaled down by ~13% (0.87) as requested so the avatar/body is slightly smaller
+      // and sits in perfect proportion between the left hero title and right copy
+      const desktopScale = coverScale * 0.87;
 
-      let dw, dh, dx, dy;
+      const dw = iw * desktopScale;
+      const dh = ih * desktopScale;
+      const dx = (cw - dw) / 2;
+      // Position eye-level with natural vertical centering
+      const dy = (ch - dh) * 0.22;
 
-      if (canvasRatio > imageRatio) {
-        dw = cw;
-        dh = cw / imageRatio;
-        dx = 0;
-        dy = (ch - dh) * 0.12;
-      } else {
-        dh = ch;
-        dw = ch * imageRatio;
-        dx = (cw - dw) / 2;
-        dy = 0;
+      ctx.drawImage(img, 0, 0, iw, ih, dx, dy, dw, dh);
+
+      // 3. Subtle bottom vignette so the jacket seamlessly melts into #0d040a
+      const bottomFadeStart = dy + dh * 0.82;
+      if (bottomFadeStart < ch) {
+        const bGrad = ctx.createLinearGradient(0, bottomFadeStart, 0, Math.min(ch, dy + dh));
+        bGrad.addColorStop(0, "rgba(13, 4, 10, 0)");
+        bGrad.addColorStop(1, "#0d040a");
+        ctx.fillStyle = bGrad;
+        ctx.fillRect(0, bottomFadeStart, cw, ch - bottomFadeStart);
       }
 
-      ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh);
       return true;
     };
 
@@ -296,7 +325,7 @@ export default function FrameBackground() {
     };
 
     const onResize = () => {
-      resizeCanvas();
+      resizeCanvas(true);
       handleScroll();
       updateMobileOverlay();
     };
@@ -309,7 +338,7 @@ export default function FrameBackground() {
       window.lenis.on("scroll", handleScroll);
     }
 
-    resizeCanvas();
+    resizeCanvas(true);
     updateMobileOverlay();
     targetProgress = calculateProgress();
     currentProgress = targetProgress;

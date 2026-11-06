@@ -547,6 +547,72 @@
   line-height: 1.4;
 }
 
+/* Fallback card when background email API is pending activation or offline */
+.contact-fallback-box {
+  margin-top: 14px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: rgba(255, 61, 127, 0.08);
+  border: 1px solid rgba(255, 61, 127, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.contact-fallback-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.contact-fallback-title strong {
+  color: #ff5c8a;
+}
+
+.contact-fallback-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btn-pill-mail,
+.btn-pill-wa {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-pill-mail {
+  background: #ffffff;
+  color: #0d040a;
+}
+
+.btn-pill-mail:hover {
+  background: #f0ecf2;
+  transform: translateY(-1px);
+}
+
+.btn-pill-wa {
+  background: #25D366;
+  color: #ffffff;
+}
+
+.btn-pill-wa:hover {
+  background: #20bd5a;
+  transform: translateY(-1px);
+}
+
 .btn-pill-submit,
 .contact-submit-btn {
   background: #ffffff;
