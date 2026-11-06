@@ -1,0 +1,45 @@
+/* Crisp fixed canvas background: koi blur/filter/scale/will-change nahi */
+.fb-root {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  background: transparent;
+}
+
+.fb-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  z-index: -1;
+  pointer-events: none;
+  filter: none;
+  transform: none;
+  will-change: auto;
+  image-rendering: auto;
+}
+
+.fb-shade {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(9, 5, 11, 0.45) 0%, transparent 25%, transparent 75%, rgba(9, 5, 11, 0.55) 100%);
+}
+
+/* Mobile dynamic readability overlay: darkens as user scrolls past hero */
+.fb-scroll-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background: #0d040a;
+  opacity: 0;
+  will-change: opacity;
+}
+

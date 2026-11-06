@@ -1,0 +1,44 @@
+# Environment variables (keep .env.example tracked)
+.env
+.env.*
+
+
+# Dependencies
+node_modules/
+
+# Production build outputs & local Vite cache
+dist/
+dist-ssr/
+build/
+.vite/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor & OS files
+.vscode/
+.idea/
+.history/
+.DS_Store
+Thumbs.db
+
+# Backups & archives
+*.bak
+*.orig
+*.old
+*.zip
+*.rar
+*.7z
+
+# Raw/reference videos (not loaded by production site)
+*.mp4
+*.mov
+video/
+
+# Frame extraction directories & local scratch dumps
+ezgif-*/
+scratch_*.txt

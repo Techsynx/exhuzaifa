@@ -1,0 +1,157 @@
+/* ==========================================================================
+   Skills Marquee Ribbon Styles (sk- prefix)
+   Theme: #09050b base, orange #ff6a3d, pink #ff5c8a, violet #a78bfa
+   ========================================================================== */
+
+.sk-section {
+  position: relative;
+  background-color: #09050b;
+  color: #f4f1f5;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  padding: clamp(40px, 6vh, 68px) 0;
+  overflow: hidden;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+.sk-section * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Subtle ambient glow for seamless blend into sections */
+.sk-glow-ambient {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(60% 70% at 20% 50%, rgba(255, 106, 61, 0.05), transparent 70%),
+    radial-gradient(60% 70% at 80% 50%, rgba(255, 92, 138, 0.05), transparent 70%);
+  z-index: 0;
+}
+
+/* ===== Infinite Marquee Lines (2 rows, soft mask fade edges) ===== */
+.sk-marquee-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  z-index: 1;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+.sk-marquee-row {
+  display: flex;
+  width: max-content;
+  user-select: none;
+}
+
+.sk-marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-right: 14px;
+  flex-shrink: 0;
+  will-change: transform;
+}
+
+.sk-marquee-left .sk-marquee-track {
+  animation: sk-scroll-left 30s linear infinite;
+}
+
+.sk-marquee-right .sk-marquee-track {
+  animation: sk-scroll-right 30s linear infinite;
+}
+
+.sk-marquee-wrap:hover .sk-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes sk-scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes sk-scroll-right {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(0); }
+}
+
+/* Marquee Skill Pill */
+.sk-marquee-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.038);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #ede8f0;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  cursor: default;
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.sk-marquee-pill:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.07);
+  border-color: var(--item-accent, #ff6a3d);
+  color: #ffffff;
+  box-shadow:
+    0 10px 24px -6px rgba(0, 0, 0, 0.6),
+    0 0 16px -4px var(--item-accent, rgba(255, 106, 61, 0.45));
+}
+
+.sk-marquee-pill:hover .sk-icon {
+  color: var(--item-accent, #ff6a3d);
+}
+
+/* Icon Container */
+.sk-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 17px;
+  height: 17px;
+  color: rgba(255, 255, 255, 0.85);
+  transition: color 0.25s ease;
+  flex-shrink: 0;
+}
+
+.sk-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.sk-fallback-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ff6a3d;
+}
+
+/* ===== Accessibility: Prefers-Reduced-Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  .sk-marquee-track {
+    animation: none !important;
+  }
+
+  .sk-marquee-pill:hover {
+    transform: none !important;
+  }
+}
