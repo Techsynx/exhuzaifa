@@ -152,20 +152,19 @@ export default function FrameBackground() {
 
       // 2. Base cover scale
       const coverScale = Math.max(cw / iw, ch / ih);
-      // Scaled down by ~13% (0.87) as requested so the avatar/body is slightly smaller
-      // and sits in perfect proportion between the left hero title and right copy
-      const desktopScale = coverScale * 0.87;
+      // Scaled down by just 3% (0.97) instead of 13% as requested
+      const desktopScale = coverScale * 0.97;
 
       const dw = iw * desktopScale;
       const dh = ih * desktopScale;
       const dx = (cw - dw) / 2;
       // Position eye-level with natural vertical centering
-      const dy = (ch - dh) * 0.22;
+      const dy = (ch - dh) * 0.16;
 
       ctx.drawImage(img, 0, 0, iw, ih, dx, dy, dw, dh);
 
       // 3. Subtle bottom vignette so the jacket seamlessly melts into #0d040a
-      const bottomFadeStart = dy + dh * 0.82;
+      const bottomFadeStart = dy + dh * 0.85;
       if (bottomFadeStart < ch) {
         const bGrad = ctx.createLinearGradient(0, bottomFadeStart, 0, Math.min(ch, dy + dh));
         bGrad.addColorStop(0, "rgba(13, 4, 10, 0)");
