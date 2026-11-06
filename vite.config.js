@@ -11,6 +11,12 @@ export default defineConfig({
   build: {
     cssCodeSplit: true,
     chunkSizeWarningLimit: 1200,
+    modulePreload: {
+      resolveDependencies: (filename, deps) => {
+        // Exclude heavy three-vendor and Scene chunks from being modulepreloaded in the initial HTML head
+        return deps.filter((dep) => !dep.includes('three-vendor') && !dep.includes('Scene'));
+      },
+    },
     rollupOptions: {
       output: {
         manualChunks: {

@@ -30,41 +30,84 @@
   <meta name="twitter:description" content="AI Software Engineer specializing in production agentic workflows, enterprise RAG systems, and full-stack AI applications. Recognized by NASA for Severe (P1) vulnerability disclosure." />
   <meta name="twitter:image" content="https://exhuzaifa.vercel.app/og-image.jpg" />
 
-  <!-- JSON-LD Structured Data for Search Engines -->
+  <!-- Agentic Browsing & Machine-Readable Context -->
+  <link rel="alternate" type="text/markdown" title="LLMs.txt" href="/llms.txt" />
+
+  <!-- Critical Asset Preloads -->
+  <link rel="preload" as="image" href="/frames/ezgif-frame-001.jpg" fetchpriority="high" />
+
+  <!-- JSON-LD Structured Data for Search Engines & AI Agents -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Huzaifa Malik",
-    "alternateName": ["exhuzaifa", "Muhammad Huzaifa Tabassum"],
-    "jobTitle": "AI Software Engineer",
-    "url": "https://exhuzaifa.vercel.app/",
-    "sameAs": [
-      "https://github.com/Techsynx",
-      "https://www.linkedin.com/in/exhuzaifa",
-      "https://contra.com/huzaifa_malik"
-    ],
-    "description": "AI Software Engineer specializing in production agentic workflows, enterprise RAG systems, and full-stack AI development. Recognized by NASA for Severe (P1) vulnerability disclosure.",
-    "knowsAbout": [
-      "Artificial Intelligence",
-      "AI Agents",
-      "LangChain",
-      "LangGraph",
-      "n8n",
-      "RAG Systems",
-      "FastAPI",
-      "React",
-      "MLOps",
-      "NASA VDP Security"
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://exhuzaifa.vercel.app/#person",
+        "name": "Huzaifa Malik",
+        "alternateName": ["exhuzaifa", "Muhammad Huzaifa Tabassum"],
+        "jobTitle": "AI Software Engineer",
+        "url": "https://exhuzaifa.vercel.app/",
+        "image": "https://exhuzaifa.vercel.app/profile-face.jpg",
+        "email": "mailto:exhuzaifa@gmail.com",
+        "telephone": "+923268282409",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Lahore",
+          "addressCountry": "PK"
+        },
+        "sameAs": [
+          "https://github.com/Techsynx",
+          "https://www.linkedin.com/in/exhuzaifa",
+          "https://contra.com/huzaifa_malik"
+        ],
+        "description": "AI Software Engineer specializing in production agentic workflows, enterprise RAG systems, and full-stack AI development. Recognized by NASA for Severe (P1) vulnerability disclosure.",
+        "knowsAbout": [
+          "Artificial Intelligence",
+          "AI Agents",
+          "LangChain",
+          "LangGraph",
+          "n8n",
+          "RAG Systems",
+          "FastAPI",
+          "React",
+          "MLOps",
+          "NASA VDP Security"
+        ]
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://exhuzaifa.vercel.app/#service",
+        "name": "Huzaifa Malik — AI Engineering & Automation",
+        "url": "https://exhuzaifa.vercel.app/",
+        "founder": {
+          "@id": "https://exhuzaifa.vercel.app/#person"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "Customer Support",
+          "email": "exhuzaifa@gmail.com",
+          "telephone": "+923268282409",
+          "availableLanguage": ["English", "Urdu"]
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Lahore",
+          "addressCountry": "PK"
+        }
+      }
     ]
   }
   </script>
-  <!-- Google Fonts: Plus Jakarta Sans, Inter, Instrument Serif, Syne -->
+
+  <!-- Non-Render-Blocking Google Fonts with display=swap -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital,wght@0,400;1,400&family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@600;700;800&display=swap"
-    rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&family=Syne:wght@700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&family=Syne:wght@700;800&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&family=Syne:wght@700;800&display=swap">
+  </noscript>
   <link rel="stylesheet" href="/style.css" />
 </head>
 

@@ -220,6 +220,9 @@ export default function FrameBackground() {
 
     // Always compute from calculateProgress() (ignore any e.progress from other scroll libraries)
     const handleScroll = () => {
+      if (!hasStartedDeferredPreload && window.scrollY > 8) {
+        startDeferredPreload();
+      }
       targetProgress = calculateProgress();
     };
 
@@ -284,12 +287,45 @@ export default function FrameBackground() {
       });
     };
 
-    // Staged eager preloader:
-    // 1. Frame 1 first immediately
-    // 2. Keyframes spaced out for instant scrub readiness
-    // 3. Batch preload all remaining frames
-    const preloadAllFrames = async () => {
-      // 1. First frame immediately
+    // Intelligent Performance Preloader:
+    // 1. Frame 0 loads immediately so the hero avatar paints instantly on first render.
+    // 2. Remaining frames are deferred until after page load (or upon first scroll),
+    //    preventing network contention on Slow 4G mobile and maximizing Lighthouse FCP/LCP.
+    let hasStartedDeferredPreload = false;
+    const startDeferredPreload = () => {
+      if (hasStartedDeferredPreload) return;
+      hasStartedDeferredPreload = true;
+
+      const run = async () => {
+        // Step A: Load sparse keyframes (every 6th frame) for smooth scrub response
+        const keyframes = [];
+        for (let i = 5; i < TOTAL_FRAMES; i += 6) {
+          keyframes.push(loadSingleFrame(i));
+        }
+        await Promise.all(keyframes);
+
+        // Step B: Load all remaining frames in gentle batches with main-thread pauses
+        const remaining = [];
+        for (let i = 0; i < TOTAL_FRAMES; i++) {
+          if (!loaded[i]) remaining.push(i);
+        }
+
+        const batchSize = 10;
+        for (let b = 0; b < remaining.length; b += batchSize) {
+          const chunk = remaining.slice(b, b + batchSize);
+          await Promise.all(chunk.map((idx) => loadSingleFrame(idx)));
+          await new Promise((r) => setTimeout(r, 60));
+        }
+      };
+
+      if ("requestIdleCallback" in window) {
+        window.requestIdleCallback(() => run(), { timeout: 2500 });
+      } else {
+        setTimeout(run, 1200);
+      }
+    };
+
+    const preloadInitialFrame = async () => {
       const firstImg = await loadSingleFrame(0);
       if (firstImg) {
         drawFrame(0);
@@ -297,25 +333,10 @@ export default function FrameBackground() {
         needsRedraw = false;
       }
 
-      // 2. Keyframes spaced out every 5 frames
-      const keyframes = [];
-      for (let i = 4; i < TOTAL_FRAMES; i += 5) {
-        keyframes.push(loadSingleFrame(i));
-      }
-      await Promise.all(keyframes);
-
-      // 3. Remaining frames in batches
-      const batchSize = 16;
-      const remaining = [];
-      for (let i = 0; i < TOTAL_FRAMES; i++) {
-        if (!loaded[i]) {
-          remaining.push(i);
-        }
-      }
-
-      for (let b = 0; b < remaining.length; b += batchSize) {
-        const chunk = remaining.slice(b, b + batchSize);
-        await Promise.all(chunk.map((idx) => loadSingleFrame(idx)));
+      if (document.readyState === "complete") {
+        startDeferredPreload();
+      } else {
+        window.addEventListener("load", startDeferredPreload, { once: true });
       }
     };
 
@@ -337,7 +358,7 @@ export default function FrameBackground() {
     updateMobileOverlay();
     targetProgress = calculateProgress();
     currentProgress = targetProgress;
-    preloadAllFrames();
+    preloadInitialFrame();
     animId = requestAnimationFrame(tick);
 
     return () => {

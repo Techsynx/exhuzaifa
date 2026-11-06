@@ -142,10 +142,11 @@ function initProjectsHeaderReveal() {
   });
 }
 
-// Interactive & Auto-Drift Glow Controller for Hero Heading
+// Interactive Cursor Glow Controller for Hero Heading (Desktop Hover Only)
 function initHeroHeadingGlow() {
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReduced) return;
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || window.innerWidth <= 768;
+  if (prefersReduced || isTouchDevice) return;
 
   const heroSection = document.querySelector('.hero-section');
   const heading = document.querySelector('.hero-title');
@@ -160,12 +161,17 @@ function initHeroHeadingGlow() {
     lineRects = Array.from(lineInners).map((el) => el.getBoundingClientRect());
   };
 
-  measure();
-  window.addEventListener('resize', measure);
+  // Defer measure to requestIdleCallback / RAF to eliminate initial render forced reflow
+  if ('requestIdleCallback' in window) {
+    window.requestIdleCallback(() => measure(), { timeout: 1500 });
+  } else {
+    setTimeout(measure, 500);
+  }
+
+  window.addEventListener('resize', measure, { passive: true });
   window.addEventListener('scroll', measure, { passive: true });
 
   let isPointerOver = false;
-  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
   let targetX = -999;
   let targetY = -999;
   let currentX = -999;
