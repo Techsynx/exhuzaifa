@@ -130,7 +130,8 @@ export function ContactSection() {
     setStatus("sending");
     setErrorMsg("");
 
-    const subject = encodeURIComponent(`Portfolio Message: ${form.topic} (from ${form.name.trim()})`);
+    const subjectText = `Portfolio Message: ${form.topic} (from ${form.name.trim()})`;
+    const subject = encodeURIComponent(subjectText);
     const body = encodeURIComponent(
       `Hi Huzaifa,\n\nName: ${form.name.trim()}\nEmail: ${form.email.trim()}\nTopic: ${form.topic}\n\nMessage:\n${form.message.trim()}\n`
     );
@@ -139,36 +140,35 @@ export function ContactSection() {
     try {
       let ok = false;
 
-      // 1. Try direct FormSubmit AJAX endpoint with 4.5s AbortController timeout
+      // Primary submission via verified Web3Forms access key (delivers directly to exhuzaifa@gmail.com)
       try {
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 4500);
+        const formData = new FormData();
+        formData.append("access_key", import.meta.env.VITE_WEB3FORMS_KEY || "17b7edb6-d0af-461f-b19f-d59407576076");
+        formData.append("name", form.name.trim());
+        formData.append("email", form.email.trim());
+        formData.append("topic", form.topic);
+        formData.append("subject", subjectText);
+        formData.append("message", form.message.trim());
+        formData.append("from_name", `${form.name.trim()} (Portfolio)`);
 
-        const fsRes = await fetch("https://formsubmit.co/ajax/exhuzaifa@gmail.com", {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 8000);
+
+        const res = await fetch("https://api.web3forms.com/submit", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify({
-            name: form.name.trim(),
-            email: form.email.trim(),
-            topic: form.topic,
-            message: form.message.trim(),
-            _subject: `New Portfolio Message from ${form.name.trim()} (${form.topic})`,
-            _template: "table",
-            _captcha: "false",
-          }),
+          body: formData,
           signal: controller.signal,
         });
 
         clearTimeout(timeoutId);
-        const fsData = await fsRes.json().catch(() => ({}));
-        if (fsRes.ok && (fsData.success === "true" || fsData.success === true)) {
+        const data = await res.json().catch(() => ({}));
+        if (res.ok && data.success) {
           ok = true;
+        } else {
+          console.warn("[ContactForm] Web3Forms response:", data);
         }
       } catch (e) {
-        console.warn("[ContactForm] Background delivery attempt:", e);
+        console.warn("[ContactForm] Web3Forms delivery attempt failed:", e);
       }
 
       if (ok) {
@@ -179,7 +179,7 @@ export function ContactSection() {
         setErrors({});
         if (textareaRef.current) textareaRef.current.style.height = "auto";
         if (successTimerRef.current) clearTimeout(successTimerRef.current);
-        successTimerRef.current = setTimeout(() => setStatus((s) => (s === "success" ? "idle" : s)), 5000);
+        successTimerRef.current = setTimeout(() => setStatus((s) => (s === "success" ? "idle" : s)), 6000);
       } else {
         // Fallback: automatically launch the pre-filled mail client so message is never lost
         window.location.href = mailtoUrl;
@@ -536,6 +536,28 @@ export function ContactSection() {
                     </svg>
                   </span>
                 </button>
+                {status === "success" && (
+                  <div
+                    className="contact-success-box"
+                    role="status"
+                    style={{
+                      marginTop: "1rem",
+                      padding: "0.85rem 1.25rem",
+                      background: "rgba(34, 197, 94, 0.12)",
+                      border: "1px solid rgba(34, 197, 94, 0.35)",
+                      borderRadius: "14px",
+                      color: "#4ade80",
+                      fontSize: "0.92rem",
+                      fontWeight: 500,
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.5rem",
+                    }}
+                  >
+                    <span>✓</span>
+                    <span>Message delivered directly to Huzaifa! I&apos;ll get back to you shortly.</span>
+                  </div>
+                )}
                 {status === "fallback" && (
                   <div className="contact-fallback-box" role="status">
                     <p className="contact-fallback-title">
