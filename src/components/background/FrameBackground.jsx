@@ -145,34 +145,30 @@ export default function FrameBackground() {
         return true;
       }
 
-      // DESKTOP: (screens > 768px):
-      // 1. Fill entire canvas with dark maroon studio background #0d040a first
-      ctx.fillStyle = "#0d040a";
-      ctx.fillRect(0, 0, cw, ch);
+      // DESKTOP: (screens > 768px): Original 100% cover-fit (0% scale down) with full headroom and hair intact
+      const sx = 0;
+      const sy = 0;
+      const sw = iw;
+      const sh = ih;
 
-      // 2. Base cover scale
-      const coverScale = Math.max(cw / iw, ch / ih);
-      // Scaled down by just 3% (0.97) instead of 13% as requested
-      const desktopScale = coverScale * 0.97;
+      const canvasRatio = cw / ch;
+      const imageRatio = sw / sh;
 
-      const dw = iw * desktopScale;
-      const dh = ih * desktopScale;
-      const dx = (cw - dw) / 2;
-      // Position eye-level with natural vertical centering
-      const dy = (ch - dh) * 0.16;
+      let dw, dh, dx, dy;
 
-      ctx.drawImage(img, 0, 0, iw, ih, dx, dy, dw, dh);
-
-      // 3. Subtle bottom vignette so the jacket seamlessly melts into #0d040a
-      const bottomFadeStart = dy + dh * 0.85;
-      if (bottomFadeStart < ch) {
-        const bGrad = ctx.createLinearGradient(0, bottomFadeStart, 0, Math.min(ch, dy + dh));
-        bGrad.addColorStop(0, "rgba(13, 4, 10, 0)");
-        bGrad.addColorStop(1, "#0d040a");
-        ctx.fillStyle = bGrad;
-        ctx.fillRect(0, bottomFadeStart, cw, ch - bottomFadeStart);
+      if (canvasRatio > imageRatio) {
+        dw = cw;
+        dh = cw / imageRatio;
+        dx = 0;
+        dy = (ch - dh) * 0.12;
+      } else {
+        dh = ch;
+        dw = ch * imageRatio;
+        dx = (cw - dw) / 2;
+        dy = 0;
       }
 
+      ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh);
       return true;
     };
 
