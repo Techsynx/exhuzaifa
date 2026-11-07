@@ -1,29 +1,77 @@
+# Allow all search engine bots and AI crawlers
 User-agent: *
 Allow: /
 
-# Explicit AI Agent & Web Crawler Permissions
-User-agent: GPTBot
+# Microsoft & Bing
+User-agent: bingbot
 Allow: /
 
-User-agent: ClaudeBot
+User-agent: msnbot
 Allow: /
 
-User-agent: PerplexityBot
+User-agent: MicrosoftPreview
+Allow: /
+
+# Google
+User-agent: Googlebot
 Allow: /
 
 User-agent: Google-Extended
 Allow: /
 
-User-agent: Applebot-Extended
+# OpenAI
+User-agent: GPTBot
 Allow: /
 
-User-agent: CCBot
-Allow: /
-
-User-agent: anthropic-ai
+User-agent: ChatGPT-User
 Allow: /
 
 User-agent: OAI-SearchBot
 Allow: /
 
+# Anthropic Claude
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+# Apple
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Meta
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# Other AI Crawlers & Indexers
+User-agent: CCBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Cohere-ai
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
 Sitemap: https://exhuzaifa.vercel.app/sitemap.xml
+Host: https://exhuzaifa.vercel.app

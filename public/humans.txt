@@ -1,0 +1,15 @@
+/* TEAM */
+AI Software Engineer: Huzaifa Malik (exhuzaifa / Muhammad Huzaifa Tabassum)
+Contact: exhuzaifa@gmail.com
+GitHub: https://github.com/Techsynx
+LinkedIn: https://www.linkedin.com/in/huzaifa-malikk
+From: Lahore, Pakistan
+
+/* RECOGNITION */
+NASA Vulnerability Disclosure Program (VDP): Severe (P1) Security Vulnerability Disclosure
+
+/* SITE */
+Standards: HTML5, CSS3, ESNext, WebGL, Schema.org JSON-LD, llmstxt.org
+Architecture: React 18 Islands, Three.js, GSAP ScrollTrigger, Lenis Smooth Scroll, Vite
+Hosting: Vercel Fluid Edge Compute
+Canonical URL: https://exhuzaifa.vercel.app/

@@ -122,7 +122,7 @@ export default function FooterSection() {
 
           {/* Col 2: Navigation Quick Links */}
           <nav className="ft-col ft-col-nav ft-reveal" aria-label="Footer Quick Links">
-            <h4 className="ft-col-title">Navigation</h4>
+            <h3 className="ft-col-title">Navigation</h3>
             <ul className="ft-nav-list">
               {QUICK_LINKS.map((link) => (
                 <li key={link.label}>
@@ -140,7 +140,7 @@ export default function FooterSection() {
 
           {/* Col 3: Social Links */}
           <div className="ft-col ft-col-social ft-reveal">
-            <h4 className="ft-col-title">Connect</h4>
+            <h3 className="ft-col-title">Connect</h3>
             <p className="ft-social-sub">Get in touch directly or follow my work on GitHub.</p>
             <div className="ft-social-row">
               {SOCIAL_LINKS.filter((social) => social.href && social.href !== "TODO").map((social) => (

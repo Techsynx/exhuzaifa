@@ -20,7 +20,8 @@ export default function WhatIDo() {
   const root = useRef(null)
   const progress = useRef(0)
   const [mode, setMode] = useState('pending')
-  const [inView, setInView] = useState(true)
+  const [load3D, setLoad3D] = useState(false)
+  const [inView, setInView] = useState(false)
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
 
   useEffect(() => {
@@ -28,10 +29,17 @@ export default function WhatIDo() {
     setMode(reduce || !webglOK() ? 'static' : '3d')
   }, [])
 
-  // Render loop only runs while the section is near the screen
+  // Defers loading Three.js bundle until section is within 600px of viewport, keeping initial load fast
   useEffect(() => {
     if (mode !== '3d') return
-    const io = new IntersectionObserver(([e]) => setInView(e.isIntersecting), { rootMargin: '200px' })
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) {
+        setLoad3D(true)
+        setInView(true)
+      } else {
+        setInView(false)
+      }
+    }, { rootMargin: '600px' })
     if (root.current) io.observe(root.current)
     return () => io.disconnect()
   }, [mode])
@@ -130,7 +138,7 @@ export default function WhatIDo() {
       <div className="wid-pinned">
         {/* Full-Page Stage: 3D canvas fills the entire screen */}
         <div className="wid-stage">
-          {mode === '3d' && (
+          {mode === '3d' && load3D && (
             <div className="wid-canvas">
               <Suspense fallback={null}>
                 <Scene progress={progress} active={inView} isMobile={isMobile} />

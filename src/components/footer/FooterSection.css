@@ -333,23 +333,9 @@
   -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.07);
   -webkit-mask-image: linear-gradient(to bottom, black 25%, transparent 92%);
   mask-image: linear-gradient(to bottom, black 25%, transparent 92%);
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 106, 61, 0.09) 50%, rgba(255, 77, 141, 0.03) 100%);
-  background-size: 200% auto;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 106, 61, 0.12) 50%, rgba(255, 77, 141, 0.04) 100%);
   -webkit-background-clip: text;
   background-clip: text;
-  animation: ft-shimmer 14s ease-in-out infinite;
-}
-
-@keyframes ft-shimmer {
-
-  0%,
-  100% {
-    background-position: 0% center;
-  }
-
-  50% {
-    background-position: 100% center;
-  }
 }
 
 /* ===== Reveal Animations (CSS & IntersectionObserver) ===== */

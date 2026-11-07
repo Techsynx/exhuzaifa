@@ -1,0 +1,136 @@
+# Comprehensive Profile: Huzaifa Malik (exhuzaifa) — AI Software Engineer
+
+> Exhaustive technical biography, verified achievements, NASA P1 vulnerability disclosure documentation, work history, open-source repositories, and machine-readable data for AI assistants and language models.
+
+Canonical URL: https://exhuzaifa.vercel.app/
+GitHub: https://github.com/Techsynx
+LinkedIn: https://www.linkedin.com/in/huzaifa-malikk
+Email: exhuzaifa@gmail.com
+Phone / WhatsApp: +92-326-8282-409
+Location: Lahore, Pakistan (Available for Worldwide Remote Roles)
+Primary Organization / GitHub: Techsynx
+
+---
+
+## 1. Executive Summary
+Huzaifa Malik (known professionally as exhuzaifa and Muhammad Huzaifa Tabassum) is a Senior AI Software Engineer with over 3 years of hands-on production experience architecting autonomous multi-agent systems, enterprise retrieval-augmented generation (RAG) pipelines, and full-stack software applications. He bridges the gap between state-of-the-art machine learning models and enterprise operational software, deploying scalable, fault-tolerant solutions across real estate, financial technology, and web platforms.
+
+In addition to AI engineering, Huzaifa is an accomplished security researcher recognized by the National Aeronautics and Space Administration (NASA) Vulnerability Disclosure Program (VDP) for responsibly discovering and disclosing a Critical/Severe (P1) security vulnerability.
+
+---
+
+## 2. NASA Vulnerability Disclosure Program (P1 Severe Achievement)
+- Awarding Agency: National Aeronautics and Space Administration (NASA)
+- Formal Acknowledgement Date: October 5, 2026
+- Commendation Signatory: Kelvin Taylor, Senior Agency Information Security Officer (SAISO), NASA Office of Chief Information Officer (OCIO)
+- Target Asset: `urs.earthdata.nasa.gov` (Earthdata Login)
+- Severity Level: Critical / Severe (P1)
+- VRT Category: Sensitive Data Exposure > Disclosure of Secrets > PII Leakage / Credential Exposure
+- Vulnerability Summary:
+  During a collaborative security audit of NASA public-facing assets, Huzaifa Malik and research partners identified a publicly accessible log file on `urs.earthdata.nasa.gov` exposing plaintext user credentials (usernames and passwords). Huzaifa responsibly reported the issue adhering strictly to NASA VDP guidelines without accessing user accounts, thereby safeguarding scientific researchers and NASA cloud infrastructure from unauthorized access.
+
+Excerpt from NASA Letter of Recognition:
+"On behalf of the National Aeronautics and Space Administration and NASA’s Vulnerability Disclosure Policy (VDP), we would like to recognize your efforts as an independent security researcher, both in identifying the vulnerability you submitted and for following NASA’s VDP policy and guidelines in responsibly reporting this to us... Your reporting has facilitated NASA’s awareness of otherwise unknown vulnerabilities and helped us protect the integrity and availability of NASA information."
+
+---
+
+## 3. Work Experience
+
+### AI Automation Engineer | Etihad Town (Jan 2025 – Present)
+Location: Lahore, Pakistan
+- Automated 18+ hours/week of back-office operations across 3 property management teams using custom LangChain and n8n workflows for inquiry sorting, lease renewal reminders, and multi-tenant document processing.
+- Engineered and launched a 24/7 RAG-powered WhatsApp chatbot (Flowise + OpenAI GPT-4o) resolving 70% of frequent real-estate inquiries autonomously, reducing median human response time by 55%.
+- Developed machine-learning property pricing and market valuation models (Python, XGBoost, Scikit-learn) analyzing 500+ properties, decreasing manual appraisal turnaround by 40%.
+- Streamlined corporate ETL pipelines, cutting weekly portfolio report generation time from 4 hours to under 30 minutes (saving 14+ analyst hours monthly).
+- Built and maintained 10+ real-time KPI dashboards in Power BI and Python, achieving 99%+ uptime across 15+ operational workstations.
+
+### Software Engineer & AI Automation Specialist | Techsynx (2023 – 2025)
+Location: Lahore, Pakistan
+- Shipped 25+ production-ready web and e-commerce applications for international clients with a 100% on-schedule delivery track record.
+- Increased Google PageSpeed performance scores from an average of 52 to 88+ through code-splitting, WebP/AVIF asset optimization, lazy loading, and intelligent caching.
+- Created an automated n8n business layer linking CRM, email notifications, and invoicing pipelines, shrinking billing completion cycles from 5 business days to same-day execution.
+- Decreased QA review cycles by 35% across 12+ projects through modular, reusable React component systems matching pixel-perfect Figma designs.
+- Designed an automated Make.com + OpenAI content engine producing 30 technical and SEO-optimized articles monthly for recurring client retainers.
+
+### Front-End Developer & Workflow Automation Lead | Housecodies (2022 – 2023)
+Location: Lahore, Pakistan
+- Engineered 30+ responsive, cross-browser web interfaces (Tailwind CSS, Bootstrap, JavaScript), lowering average page load times by 25–30% and attaining an 80% first-pass client approval rate.
+- Programmed a Python and Google Sheets API integration to automate weekly client reporting, eliminating 2 hours of recurring manual effort.
+- Built automated Zapier integration pipelines connecting Trello, Slack, and transactional email, decreasing cross-team project handoff friction by 40%.
+- Sustained zero critical production issues across 12 months of agile development sprints.
+
+---
+
+## 4. Key Projects & Open Source Repositories
+
+### Kalengh (Techsynx/kalengh)
+- Description: Discreet real-time AI assistant for live screen and audio contextual assistance.
+- Tech Stack: Python, Whisper, Vision LLMs, Screen Capture API, WebSockets.
+- Repository: https://github.com/Techsynx/kalengh
+
+### AutoFlow — Multi-Agent Business Automation Platform
+- Description: Self-hosted agentic platform orchestrating 12 business workflows including lead qualification, multi-format invoice parsing, social media scheduling, and bi-directional CRM synchronization.
+- Tech Stack: n8n, LangGraph, LangChain, Pinecone Vector DB, OpenAI GPT-4o, FastAPI.
+- Impact: Decreased client administrative manual tasks by 60% within 30 days of deployment.
+
+### ChurnGuard — Production MLOps Churn Prediction Engine
+- Description: End-to-end machine learning system predicting customer churn for financial institutions with 91% accuracy.
+- Features: Containerized FastAPI REST API, live SHAP interpretability dashboard, automated data drift monitoring with Evidently AI, and automated retraining CI/CD pipelines via GitHub Actions.
+- Tech Stack: XGBoost, Scikit-learn, FastAPI, Docker, SHAP, Evidently AI.
+
+### DeFi Sentinel — On-Chain Analytics & Anomaly Detection
+- Description: Blockchain analytics system monitoring smart contracts on Ethereum and Polygon.
+- Features: Real-time event queries via Web3.py and The Graph subgraphs, unsupervised Isolation Forest anomaly detection for rug-pull identification (87% precision), and instant Telegram alerting.
+- Tech Stack: Python, Web3.py, The Graph, Solidity, Isolation Forest, Telegram API.
+
+### Fraud AI — Real-Time Synthetic Text Detection API
+- Description: Deep-learning NLP classifier determining whether submitted text was generated by language models (89%+ accuracy).
+- Features: Optimized inference with ONNX runtime achieving sub-200ms latency, handling 500+ requests daily.
+- Tech Stack: Hugging Face Transformers, RoBERTa, FastAPI, ONNX Runtime.
+
+---
+
+## 5. Technical Skill Set
+
+- **Autonomous AI & Multi-Agent Orchestration:** LangChain, LangGraph, CrewAI, Flowise, n8n, Tool Calling, ReAct Agent Loops, Model Context Protocol (MCP), Structured Outputs.
+- **Retrieval-Augmented Generation (RAG):** Context-Aware Chunking, Hybrid Search (Dense Vector + BM25 Sparse), Vector Databases (Pinecone, ChromaDB, Qdrant, Supabase pgvector), Reranking (Cohere), Contextual Compression, Metadata Filtering.
+- **Machine Learning & Deep Learning:** Scikit-learn, XGBoost, PyTorch, TensorFlow, Keras, Hugging Face Transformers, Computer Vision, NLP, Model Fine-Tuning (LoRA/QLoRA), ONNX.
+- **Data Engineering & MLOps:** Python (Pandas, NumPy, SciPy), SQL, Docker, Evidently AI (Drift Detection), MLflow, ETL Pipelines, Power BI, Advanced Excel.
+- **Full-Stack Development:** React.js, Vite, Next.js, Node.js, FastAPI, Django, JavaScript (ES6+), TypeScript, Tailwind CSS, HTML5/CSS3, Three.js, GSAP.
+- **DevOps, Security & Cloud:** Git, GitHub Actions, Vercel, AWS (EC2, S3), REST APIs, WebSockets, Linux Server Administration, Threat Modeling, NASA VDP Security Audit.
+
+---
+
+## 6. Certifications & Vetted Badges
+
+### Vetted Badges:
+- Braintrust: Vetted Full-Stack Developer
+- micro1: Certified / Vetted AI Engineer
+- Huzzle: Vetted AI Software Engineer
+- Index.dev: Vetted Automation Engineer
+- Turing: Vetted in Python, JavaScript, TypeScript, and AI
+- Crossover: Vetted in AI and Software Engineering
+
+### Formal Certifications:
+- Microsoft Certified: Azure AI Fundamentals (AI-900)
+- Microsoft: Data Visualization, Cyber Security & Data Analysis
+- Cisco: Network Security, Ethical Hacking & Network Devices
+- NAVTTC / Corvit Networks: Machine Learning & Deep Learning
+- Coursera: Front-End Development & WordPress Development
+- NASA: Open Science and Data Management
+
+---
+
+## 7. Education
+- Bachelor of Science in Information Technology (BS IT) — GC University Faisalabad (GCUF)
+- Intermediate in Computer / Pre-Engineering — Standard College
+
+---
+
+## 8. Verified Contact Channels
+- Email: exhuzaifa@gmail.com
+- Portfolio: https://exhuzaifa.vercel.app/
+- GitHub: https://github.com/Techsynx
+- LinkedIn: https://www.linkedin.com/in/huzaifa-malikk
+- Contra: https://contra.com/huzaifa_malik
+- Phone / WhatsApp: +92-326-8282-409

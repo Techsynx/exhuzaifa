@@ -175,17 +175,32 @@
   border-radius: 50%;
   background: #0a0a0f;
   border: 2px solid #ffffff40;
-  transition: .5s
+  transition: transform 0.4s ease, border-color 0.4s ease, background-color 0.4s ease;
+  will-change: transform;
+}
+
+.ex-dot::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 6px #e5091433, 0 0 22px var(--red);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
 }
 
 .ex-item.is-passed .ex-dot {
   background: var(--red);
-  border-color: var(--red)
+  border-color: var(--red);
 }
 
 .ex-item.is-active .ex-dot {
-  box-shadow: 0 0 0 6px #e5091433, 0 0 22px var(--red);
-  transform: scale(1.25)
+  transform: scale(1.25);
+}
+
+.ex-item.is-active .ex-dot::after {
+  opacity: 1;
 }
 
 .ex-card {

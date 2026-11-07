@@ -280,12 +280,11 @@ export function ContactSection() {
 
           <p className="contact-bio-paragraph">{contactData.bio}</p>
 
-          <div className="contact-info-list" role="list">
+          <div className="contact-info-list">
             {/* Email */}
             <a
               href={`mailto:${contactData.email}`}
               className="contact-info-row"
-              role="listitem"
               aria-label={`Send email to ${contactData.emailDisplay}`}
             >
               <div className="contact-info-left">
@@ -307,7 +306,6 @@ export function ContactSection() {
             <a
               href={`tel:${contactData.phone.replace(/[^\d+]/g, "")}`}
               className="contact-info-row"
-              role="listitem"
               aria-label={`Call ${contactData.phoneDisplay}`}
             >
               <div className="contact-info-left">
@@ -325,7 +323,7 @@ export function ContactSection() {
             </a>
 
             {/* Location */}
-            <div className="contact-info-row" role="listitem">
+            <div className="contact-info-row">
               <div className="contact-info-left">
                 <svg className="contact-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
@@ -344,7 +342,6 @@ export function ContactSection() {
               target="_blank"
               rel="noopener noreferrer"
               className="contact-info-row"
-              role="listitem"
               aria-label="Visit GitHub Profile"
             >
               <div className="contact-info-left">
@@ -368,7 +365,6 @@ export function ContactSection() {
               target="_blank"
               rel="noopener noreferrer"
               className="contact-info-row"
-              role="listitem"
               aria-label="Visit LinkedIn Profile"
             >
               <div className="contact-info-left">

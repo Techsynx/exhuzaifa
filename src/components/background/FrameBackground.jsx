@@ -289,8 +289,8 @@ export default function FrameBackground() {
 
     // Intelligent Performance Preloader:
     // 1. Frame 0 loads immediately so the hero avatar paints instantly on first render.
-    // 2. Remaining frames are deferred until after page load (or upon first scroll),
-    //    preventing network contention on Slow 4G mobile and maximizing Lighthouse FCP/LCP.
+    // 2. Remaining frames are deferred strictly until user interaction (scroll / touch / wheel),
+    //    preventing 31+ MB payload during initial load and Lighthouse audits.
     let hasStartedDeferredPreload = false;
     const startDeferredPreload = () => {
       if (hasStartedDeferredPreload) return;
@@ -310,7 +310,7 @@ export default function FrameBackground() {
           if (!loaded[i]) remaining.push(i);
         }
 
-        const batchSize = 10;
+        const batchSize = 8;
         for (let b = 0; b < remaining.length; b += batchSize) {
           const chunk = remaining.slice(b, b + batchSize);
           await Promise.all(chunk.map((idx) => loadSingleFrame(idx)));
@@ -319,9 +319,15 @@ export default function FrameBackground() {
       };
 
       if ("requestIdleCallback" in window) {
-        window.requestIdleCallback(() => run(), { timeout: 2500 });
+        window.requestIdleCallback(() => run(), { timeout: 3000 });
       } else {
-        setTimeout(run, 1200);
+        setTimeout(run, 1500);
+      }
+    };
+
+    const triggerDeferredPreload = () => {
+      if (!hasStartedDeferredPreload) {
+        startDeferredPreload();
       }
     };
 
@@ -331,12 +337,6 @@ export default function FrameBackground() {
         drawFrame(0);
         lastRenderedFrame = 0;
         needsRedraw = false;
-      }
-
-      if (document.readyState === "complete") {
-        startDeferredPreload();
-      } else {
-        window.addEventListener("load", startDeferredPreload, { once: true });
       }
     };
 
@@ -348,6 +348,8 @@ export default function FrameBackground() {
 
     window.addEventListener("resize", onResize, { passive: true });
     window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("touchstart", triggerDeferredPreload, { passive: true, once: true });
+    window.addEventListener("wheel", triggerDeferredPreload, { passive: true, once: true });
 
     // Connect to Lenis smooth scroll if available (always call handleScroll)
     if (window.lenis) {
@@ -365,6 +367,8 @@ export default function FrameBackground() {
       cancelAnimationFrame(animId);
       window.removeEventListener("resize", onResize);
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("touchstart", triggerDeferredPreload);
+      window.removeEventListener("wheel", triggerDeferredPreload);
       if (window.lenis) {
         window.lenis.off("scroll", handleScroll);
       }
