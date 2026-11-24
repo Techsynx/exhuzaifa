@@ -1,9 +1,20 @@
-# Allow all search engine bots and AI crawlers
+# Huzaifa Malik — AI Software Engineer Portfolio (https://exhuzaifa.vercel.app)
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /admin
+Disallow: /dashboard
+Disallow: /account
+Disallow: /checkout
+Disallow: /*?*utm_
+Disallow: /*?*session
+Disallow: /search
 
-# Microsoft & Bing
-User-agent: bingbot
+# --- Search engine crawlers: always allow ---
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
 Allow: /
 
 User-agent: msnbot
@@ -12,24 +23,35 @@ Allow: /
 User-agent: MicrosoftPreview
 Allow: /
 
-# Google
-User-agent: Googlebot
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-# OpenAI
-User-agent: GPTBot
+# --- AI answer engines (drive traffic + citations: ALLOW) ---
+User-agent: OAI-SearchBot
 Allow: /
 
 User-agent: ChatGPT-User
 Allow: /
 
-User-agent: OAI-SearchBot
+User-agent: Claude-User
 Allow: /
 
-# Anthropic Claude
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: MistralAI-User
+Allow: /
+
+# --- AI training & indexer crawlers: ALLOW ---
+User-agent: GPTBot
+Allow: /
+
 User-agent: ClaudeBot
 Allow: /
 
@@ -39,38 +61,46 @@ Allow: /
 User-agent: Claude-Web
 Allow: /
 
-# Perplexity
-User-agent: PerplexityBot
+User-agent: Google-Extended
 Allow: /
 
-# Apple
 User-agent: Applebot
 Allow: /
 
 User-agent: Applebot-Extended
 Allow: /
 
-# Meta
-User-agent: Meta-ExternalAgent
+User-agent: meta-externalagent
 Allow: /
 
 User-agent: FacebookBot
 Allow: /
 
-# Other AI Crawlers & Indexers
 User-agent: CCBot
-Allow: /
-
-User-agent: Amazonbot
 Allow: /
 
 User-agent: Bytespider
 Allow: /
 
-User-agent: Cohere-ai
+User-agent: Amazonbot
+Allow: /
+
+User-agent: cohere-ai
 Allow: /
 
 User-agent: Diffbot
+Allow: /
+
+User-agent: Timpibot
+Allow: /
+
+User-agent: Omgilibot
+Allow: /
+
+User-agent: ImagesiftBot
+Allow: /
+
+User-agent: YouBot
 Allow: /
 
 Sitemap: https://exhuzaifa.vercel.app/sitemap.xml

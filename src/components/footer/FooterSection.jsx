@@ -162,11 +162,20 @@ export default function FooterSection() {
         {/* Divider */}
         <div className="ft-divider ft-reveal" />
 
-        {/* Bottom Bar: Copyright & Back to Top */}
+        {/* Bottom Bar: Copyright, Legal & Back to Top */}
         <div className="ft-bottom-bar ft-reveal">
           <p className="ft-copyright">
             © {new Date().getFullYear()} {brandText}. All rights reserved.
           </p>
+          <div className="ft-legal-links" aria-label="Legal & Security Links">
+            <a href="/privacy-policy" className="ft-legal-link">Privacy Policy</a>
+            <span className="ft-legal-sep" aria-hidden="true">•</span>
+            <a href="/terms" className="ft-legal-link">Terms</a>
+            <span className="ft-legal-sep" aria-hidden="true">•</span>
+            <a href="/security" className="ft-legal-link">Security & NASA VDP</a>
+            <span className="ft-legal-sep" aria-hidden="true">•</span>
+            <a href="/disclaimer" className="ft-legal-link">Disclaimer</a>
+          </div>
           <button type="button" onClick={handleBackToTop} className="ft-top-btn">
             <span>Back to top</span>
             <span className="ft-top-arrow" aria-hidden="true">↑</span>

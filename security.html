@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Security Policy & NASA P1 Disclosure — Huzaifa Malik (exhuzaifa)</title>
+  <meta name="description" content="Security posture, responsible disclosure policy, and formal NASA Vulnerability Disclosure Program (VDP) Severe (P1) credential exposure recognition for Huzaifa Malik." />
+  <link rel="canonical" href="https://exhuzaifa.vercel.app/security" />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Security Policy & NASA P1 Disclosure — Huzaifa Malik" />
+  <meta property="og:description" content="Security posture, responsible disclosure guidelines, and formal NASA VDP Severe (P1) recognition." />
+  <meta property="og:url" content="https://exhuzaifa.vercel.app/security" />
+  <meta property="og:image" content="https://exhuzaifa.vercel.app/og-preview.jpg" />
+  <meta property="og:site_name" content="Huzaifa Malik Portfolio" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Security & NASA P1 Recognition — Huzaifa Malik" />
+  <meta name="twitter:description" content="Security posture and official NASA Vulnerability Disclosure Program recognition." />
+  <meta name="twitter:image" content="https://exhuzaifa.vercel.app/og-preview.jpg" />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#0d040a" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://exhuzaifa.vercel.app/security#webpage",
+        "url": "https://exhuzaifa.vercel.app/security",
+        "name": "Security Policy & NASA P1 Disclosure — Huzaifa Malik",
+        "isPartOf": { "@id": "https://exhuzaifa.vercel.app/#website" },
+        "datePublished": "2026-11-06",
+        "dateModified": "2026-11-24",
+        "description": "Security practices and NASA Vulnerability Disclosure Program recognition."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://exhuzaifa.vercel.app/security#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://exhuzaifa.vercel.app/" },
+          { "@type": "ListItem", "position": 2, "name": "Security Policy", "item": "https://exhuzaifa.vercel.app/security" }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #0d040a;
+      --card-bg: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #e6e6eb;
+      --text-muted: #9e9ea8;
+      --accent-orange: #ff6a3d;
+      --accent-amber: #ffb02e;
+      --accent-green: #10b981;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      line-height: 1.65;
+      padding: 0 1.25rem 4rem;
+    }
+    .header {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 0 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .brand {
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.25rem;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .brand span { color: var(--accent-amber); }
+    .back-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s ease;
+    }
+    .back-link:hover { color: var(--accent-orange); }
+    .container {
+      max-width: 900px;
+      margin: 2.5rem auto 0;
+    }
+    .breadcrumbs {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+    }
+    .breadcrumbs a { color: var(--text-muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: #fff; }
+    h1 {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.03em;
+    }
+    .updated {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+    .content-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: clamp(1.5rem, 3vw, 2.5rem);
+      margin-bottom: 2rem;
+    }
+    .highlight-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(255, 106, 61, 0.12);
+      border: 1px solid rgba(255, 106, 61, 0.3);
+      color: var(--accent-orange);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .highlight-card {
+      border: 1px solid rgba(255, 106, 61, 0.3);
+      background: linear-gradient(180deg, rgba(255, 106, 61, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+    }
+    h2 {
+      font-size: 1.35rem;
+      color: #fff;
+      margin: 1.8rem 0 0.8rem;
+      letter-spacing: -0.01em;
+    }
+    h2:first-child { margin-top: 0; }
+    p { margin-bottom: 1rem; color: var(--text); }
+    ul { margin: 0 0 1.2rem 1.4rem; color: var(--text); }
+    li { margin-bottom: 0.5rem; }
+    blockquote {
+      border-left: 3px solid var(--accent-amber);
+      padding: 0.75rem 1.25rem;
+      margin: 1.2rem 0;
+      background: rgba(255, 176, 46, 0.05);
+      font-style: italic;
+      color: #f0f0f5;
+    }
+    a { color: var(--accent-orange); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .footer-nav {
+      max-width: 900px;
+      margin: 3rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .footer-nav a { color: var(--text-muted); }
+    .footer-nav a:hover { color: #fff; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <a href="/" class="brand">Huzaifa Malik<span>.</span></a>
+    <a href="/" class="back-link">← Return to Portfolio</a>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a> / <span>Security Policy</span>
+    </nav>
+
+    <h1>Security & Vulnerability Disclosure</h1>
+    <p class="updated">Last updated: November 24, 2026</p>
+
+    <!-- NASA P1 Recognition Highlight Card -->
+    <div class="content-card highlight-card">
+      <div class="highlight-badge">Official Commendation</div>
+      <h2>NASA Vulnerability Disclosure Program (Severe P1 Finding)</h2>
+      <p>Huzaifa Malik (known professionally as <strong>exhuzaifa</strong> and Muhammad Huzaifa Tabassum) is an ethical security researcher formally recognized by the <strong>National Aeronautics and Space Administration (NASA)</strong> under their official Vulnerability Disclosure Policy (VDP).</p>
+      
+      <p><strong>Vulnerability Overview:</strong></p>
+      <ul>
+        <li><strong>Target Scope:</strong> <code>urs.earthdata.nasa.gov</code> (Earthdata Login System)</li>
+        <li><strong>Classification:</strong> Sensitive Data Exposure &gt; Disclosure of Secrets &gt; PII / Plaintext Credential Exposure</li>
+        <li><strong>Severity Level:</strong> Critical / Severe (P1)</li>
+        <li><strong>Responsible Disclosure Handling:</strong> Discovered a publicly accessible configuration and diagnostic log file exposing user credentials. In strict compliance with NASA VDP and Bugcrowd rules of engagement, Huzaifa verified the issue without attempting authentication into user accounts, submitted a structured remediation report, and assisted NASA security personnel in remediating the risk.</li>
+      </ul>
+
+      <blockquote>
+        "On behalf of the National Aeronautics and Space Administration and NASA's Vulnerability Disclosure Policy (VDP), we would like to recognize your efforts as an independent security researcher, both in identifying the vulnerability you submitted and for following NASA's VDP policy and guidelines in responsibly reporting this to us... Your reporting has facilitated NASA's awareness of otherwise unknown vulnerabilities and helped us protect the integrity and availability of NASA information."
+        <br><br>
+        <strong>— Kelvin Taylor</strong><br>
+        Senior Agency Information Security Officer (SAISO)<br>
+        NASA Office of the Chief Information Officer (OCIO)
+      </blockquote>
+    </div>
+
+    <div class="content-card">
+      <h2>1. Security-First Engineering Standards</h2>
+      <p>Security is not an afterthought in our software engineering practice. Across all agentic workflows, enterprise RAG systems, and full-stack web applications, we apply defense-in-depth principles:</p>
+      <ul>
+        <li><strong>Zero Trust & Least Privilege:</strong> API keys, vector database endpoints, and cloud microservices are isolated with environment-specific credentials and strict IAM policies.</li>
+        <li><strong>Prompt Injection & Agent Sandboxing:</strong> AI agent tool-calling loops enforce strict runtime parameter validation, boundary sanitization, and output verification.</li>
+        <li><strong>Transport Security:</strong> Strict-Transport-Security (HSTS), Content-Security-Policy (CSP), and secure modern cipher suites enforced across all deployments.</li>
+        <li><strong>No Client-Side Secrets:</strong> Zero confidential credentials or server keys are ever exposed in public client bundles.</li>
+      </ul>
+
+      <h2>2. Responsible Disclosure Policy for This Website</h2>
+      <p>If you identify a security issue, vulnerability, or misconfiguration on <code>https://exhuzaifa.vercel.app/</code>, we welcome your responsible disclosure:</p>
+      <ul>
+        <li><strong>Point of Contact:</strong> <a href="mailto:exhuzaifa@gmail.com">exhuzaifa@gmail.com</a></li>
+        <li><strong>RFC 9116 File:</strong> Published at <a href="/.well-known/security.txt">/.well-known/security.txt</a></li>
+        <li><strong>Response SLA:</strong> We acknowledge receipt within 48 hours and provide remediation updates within 5 business days.</li>
+        <li><strong>Safe Harbor:</strong> We will not initiate legal action against security researchers who act in good faith, avoid privacy violations, and avoid destroying or altering data.</li>
+      </ul>
+    </div>
+
+    <nav class="footer-nav" aria-label="Legal Links">
+      <span>© 2026 Huzaifa Malik (Techsynx). All rights reserved.</span>
+      <a href="/privacy-policy">Privacy Policy</a>
+      <a href="/terms">Terms of Service</a>
+      <a href="/security">Security & NASA Disclosure</a>
+      <a href="/disclaimer">Disclaimer</a>
+    </nav>
+  </main>
+</body>
+</html>

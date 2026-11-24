@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { resolve } from 'path';
 
 export default defineConfig({
   plugins: [react()],
@@ -18,6 +19,14 @@ export default defineConfig({
       },
     },
     rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'index.html'),
+        privacy: resolve(__dirname, 'privacy-policy.html'),
+        terms: resolve(__dirname, 'terms.html'),
+        security: resolve(__dirname, 'security.html'),
+        disclaimer: resolve(__dirname, 'disclaimer.html'),
+        notFound: resolve(__dirname, '404.html'),
+      },
       output: {
         manualChunks: {
           'animation-vendor': ['gsap', 'lenis'],
